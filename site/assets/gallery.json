@@ -33,7 +33,7 @@
   },
   {
     "id": "bedroom-a",
-    "title": "主卧 A",
+    "title": "主卧 A · 双侧收纳",
     "src": "assets/bedroom-a.webp",
     "thumb": "assets/thumbs/bedroom-a.webp",
     "width": 1800,
@@ -65,7 +65,7 @@
   },
   {
     "id": "wardrobe",
-    "title": "主卧一字形衣柜",
+    "title": "主卧整墙浅柜",
     "src": "assets/wardrobe.webp",
     "thumb": "assets/thumbs/wardrobe.webp",
     "width": 1800,

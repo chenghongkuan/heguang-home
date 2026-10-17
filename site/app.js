@@ -10,13 +10,13 @@ const canvas = $('scene');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const b = ([x, y, z]) => new THREE.Vector3(x, z, -y);
 const views = {
-  overview: { title: '全屋鸟瞰', description: '保留三卧，让休息与相聚各得其所。', position: [22, -17, 26], target: [7.6, 5.4, 0.2], cut: 1.15 },
-  plan: { title: '家具平面', description: '图左下：长辈 A · 图上：长辈 B · 图中下：儿子客房', position: [7.615, 5.57, 32], target: [7.615, 5.57, 0], cut: 0.45 },
+  overview: { title: '全屋鸟瞰', description: '保留三卧，让休息与相聚各得其所。', position: [22, -17, 26], target: [7.6, 5.4, 0.2], cut: 2.85 },
+  plan: { title: '家具平面', description: '图左下：长辈 A · 图中下：长辈 B · 图上：客房', position: [7.615, 5.57, 32], target: [7.615, 5.57, 0], cut: 0.45 },
   living: { title: '客厅 · 温润相聚', description: '胡桃木、暖白织物与水墨，共同构成家的底色。', position: [7.85, 0.83, 1.58], target: [9.55, 4.25, 1.24] },
   tv: { title: '电视墙与茶席', description: '一处留白，一段木色，留给日常慢慢发生。', position: [11.75, 5.75, 1.62], target: [7.25, 3.55, 1.28] },
   'bedroom-a': { title: '长辈卧室 A', description: '1.50 m 宽床 · 独立收纳 · 温润木地板', position: [3.15, 5.67, 1.53], target: [1.42, 4.12, 1.13] },
-  'bedroom-b': { title: '长辈卧室 B', description: '1.50 m 宽床 · 安静休憩 · 柔和木色', position: [5.73, 7.74, 1.53], target: [4.12, 8.90, 1.15] },
-  guest: { title: '儿子客房', description: '1.35 m 宽床与书桌，让偶尔回家也从容。', position: [3.83, 5.20, 1.50], target: [5.34, 3.75, 1.18] },
+  'bedroom-b': { title: '长辈卧室 B', description: '图中下 · 1.50 m 宽床 · 蜜棕橡木地板', position: [3.83, 5.15, 1.53], target: [5.28, 3.60, 1.15] },
+  guest: { title: '客房', description: '图上方 · 1.35 m 宽床与书桌 · 探访留宿', position: [5.74, 9.87, 1.56], target: [4.15, 8.30, 1.10] },
   dining: { title: '餐厨空间', description: '木框玻璃移门，连接烟火气与相聚的时光。', position: [10.70, 2.15, 1.58], target: [14.04, 3.66, 1.28] },
 };
 let renderer, scene, controls, camera, perspective, orthographic, model;
@@ -138,8 +138,8 @@ function selectView(id, animate = true) {
 
 function addLabels() {
   const points = [
-    ['长辈卧室 A', [1.7, 3.9, 0.9]], ['长辈卧室 B', [4.5, 9.1, 0.9]],
-    ['儿子客房', [5.2, 3.6, 0.9]], ['客厅', [9.7, 2.7, 0.4]],
+    ['长辈卧室 A', [1.7, 3.9, 0.9]], ['长辈卧室 B', [5.2, 3.6, 0.9]],
+    ['客房', [4.5, 9.1, 0.9]], ['客厅', [9.7, 2.7, 0.4]],
     ['餐厅', [12.3, 4.9, 0.9]], ['厨房', [14.15, 2.8, 0.9]],
     ['玄关', [14.0, 6.0, 0.6]], ['卫浴 A', [1.55, 7.3, 0.6]], ['卫浴 B', [6.8, 9.4, 0.6]],
   ];
@@ -183,7 +183,7 @@ function initializeViewer() {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.7));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.12;
+  renderer.toneMappingExposure = 0.94;
   renderer.localClippingEnabled = true;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -192,15 +192,15 @@ function initializeViewer() {
   const environment = new RoomEnvironment();
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(environment, 0.04).texture;
-  scene.environmentIntensity = 0.65; environment.dispose(); pmrem.dispose();
-  scene.add(new THREE.HemisphereLight(0xfff7e8, 0xb5b8b0, 1.45));
-  const sun = new THREE.DirectionalLight(0xfff5e0, 2.4); sun.position.set(4, 15, 6);
+  scene.environmentIntensity = 0.55; environment.dispose(); pmrem.dispose();
+  scene.add(new THREE.HemisphereLight(0xfff7e8, 0xb5b8b0, 1.15));
+  const sun = new THREE.DirectionalLight(0xfff5e0, 1.9); sun.position.set(4, 15, 6);
   sun.target.position.set(8, 0, -5); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048); sun.shadow.camera.left = -13; sun.shadow.camera.right = 13;
   sun.shadow.camera.top = 13; sun.shadow.camera.bottom = -13; sun.shadow.camera.near = 0.5; sun.shadow.camera.far = 40;
   sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.035; sun.shadow.radius = 3;
   scene.add(sun, sun.target);
-  const fill = new THREE.DirectionalLight(0xe9f0ff, 0.65); fill.position.set(12, 9, -12); scene.add(fill);
+  const fill = new THREE.DirectionalLight(0xe9f0ff, 0.55); fill.position.set(12, 9, -12); scene.add(fill);
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshStandardMaterial({ color: '#e4e1d7', roughness: 1 }));
   ground.rotation.x = -Math.PI / 2; ground.position.y = -0.19; ground.receiveShadow = true; scene.add(ground);
   perspective = new THREE.PerspectiveCamera(45, 1, 0.035, 300);
@@ -210,7 +210,7 @@ function initializeViewer() {
   resize(); selectView('overview', false); addLabels();
   new ResizeObserver(resize).observe(viewport);
   requestAnimationFrame(loop);
-  new GLTFLoader().load('./assets/home.glb', gltf => {
+  new GLTFLoader().load('./assets/home.glb?v=20261017-materials', gltf => {
     model = gltf.scene;
     const wallPattern = /外墙|内墙|墙体|门|窗|玻璃|垭口|踢脚|吊顶|顶角|线脚|灯带|画|水墨|墨竹|电视墙|吊灯|灯具木圈|灯底漫射/;
     const materialCache = new Map();
@@ -228,6 +228,9 @@ function initializeViewer() {
         const key = original.uuid + ':' + sectioned;
         if (materialCache.has(key)) return materialCache.get(key);
         const material = original.clone();
+        for (const texture of [material.map, material.normalMap, material.roughnessMap]) {
+          if (texture) texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+        }
         if (sectioned) { material.side = THREE.DoubleSide; wallMaterials.add(material); }
         if (material.transparent && material.opacity < 0.5) { object.castShadow = false; material.depthWrite = false; }
         materialCache.set(key, material); return material;
@@ -258,6 +261,8 @@ function initializeViewer() {
       if (group.ceiling) ceilings.push(mesh); model.add(mesh);
     }
     metrics.batches = groups.size;
+    metrics.texturedMaterials = [...materialCache.values()].filter(material => material.map).length;
+    metrics.normalMappedMaterials = [...materialCache.values()].filter(material => material.normalMap).length;
     scene.add(model); setCutaway();
     metrics.loaded = true; metrics.wallMaterials = wallMaterials.size; metrics.ceilings = ceilings.length;
     $('progress-fill').style.width = '100%'; $('loader').classList.add('loaded');
@@ -308,7 +313,7 @@ $('capture').addEventListener('click', () => {
 });
 
 async function initializeGallery() {
-  const response = await fetch('./assets/gallery.json');
+  const response = await fetch('./assets/gallery.json?v=20261017-materials');
   if (!response.ok) throw new Error('Gallery load failed');
   const images = await response.json();
   const order = ['living', 'tv', 'dining', 'bedroom-a', 'bedroom-b', 'guest', 'overview', 'plan-labeled', 'plan'];
@@ -317,9 +322,9 @@ async function initializeGallery() {
     const figure = document.createElement('figure'); figure.className = 'gallery-card';
     figure.dataset.category = ['living', 'tv', 'dining'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'guest'].includes(item.id) ? 'bedroom' : 'plan';
     const button = document.createElement('button'); button.setAttribute('aria-label', '查看' + item.title);
-    const image = new Image(); image.src = item.thumb; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
+    const image = new Image(); image.src = item.thumb + '?v=20261017-materials'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
     button.append(image);
-    button.addEventListener('click', () => { $('lightbox-image').src = item.src; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox').showModal(); });
+    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261017-materials'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox').showModal(); });
     const caption = document.createElement('figcaption');
     const name = document.createElement('span'); name.textContent = item.title;
     const arrow = document.createElement('span'); arrow.textContent = '↗'; caption.append(name, arrow);

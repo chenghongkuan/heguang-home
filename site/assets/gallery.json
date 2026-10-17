@@ -9,7 +9,7 @@
   },
   {
     "id": "plan",
-    "title": "家具平面图",
+    "title": "房间与家具平面",
     "src": "assets/plan.webp",
     "thumb": "assets/thumbs/plan.webp",
     "width": 1800,
@@ -17,7 +17,7 @@
   },
   {
     "id": "living",
-    "title": "客厅效果图",
+    "title": "客厅",
     "src": "assets/living.webp",
     "thumb": "assets/thumbs/living.webp",
     "width": 1800,
@@ -49,7 +49,7 @@
   },
   {
     "id": "guest",
-    "title": "儿子客房",
+    "title": "客房",
     "src": "assets/guest.webp",
     "thumb": "assets/thumbs/guest.webp",
     "width": 1800,
@@ -57,7 +57,7 @@
   },
   {
     "id": "dining",
-    "title": "餐厨效果图",
+    "title": "餐厨空间",
     "src": "assets/dining.webp",
     "thumb": "assets/thumbs/dining.webp",
     "width": 1800,

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "overview",
+    "title": "全屋轴测总览",
+    "src": "assets/overview.webp",
+    "thumb": "assets/thumbs/overview.webp",
+    "width": 1800,
+    "height": 1350
+  },
+  {
+    "id": "plan",
+    "title": "家具平面图",
+    "src": "assets/plan.webp",
+    "thumb": "assets/thumbs/plan.webp",
+    "width": 1800,
+    "height": 1350
+  },
+  {
+    "id": "living",
+    "title": "客厅效果图",
+    "src": "assets/living.webp",
+    "thumb": "assets/thumbs/living.webp",
+    "width": 1800,
+    "height": 1125
+  },
+  {
+    "id": "tv",
+    "title": "客厅电视墙",
+    "src": "assets/tv.webp",
+    "thumb": "assets/thumbs/tv.webp",
+    "width": 1800,
+    "height": 1125
+  },
+  {
+    "id": "bedroom-a",
+    "title": "长辈卧室 A",
+    "src": "assets/bedroom-a.webp",
+    "thumb": "assets/thumbs/bedroom-a.webp",
+    "width": 1800,
+    "height": 1200
+  },
+  {
+    "id": "bedroom-b",
+    "title": "长辈卧室 B",
+    "src": "assets/bedroom-b.webp",
+    "thumb": "assets/thumbs/bedroom-b.webp",
+    "width": 1800,
+    "height": 1200
+  },
+  {
+    "id": "guest",
+    "title": "儿子客房",
+    "src": "assets/guest.webp",
+    "thumb": "assets/thumbs/guest.webp",
+    "width": 1800,
+    "height": 1200
+  },
+  {
+    "id": "dining",
+    "title": "餐厨效果图",
+    "src": "assets/dining.webp",
+    "thumb": "assets/thumbs/dining.webp",
+    "width": 1800,
+    "height": 1125
+  },
+  {
+    "id": "plan-labeled",
+    "title": "房间标注平面",
+    "src": "assets/plan-labeled.webp",
+    "thumb": "assets/thumbs/plan-labeled.webp",
+    "width": 1800,
+    "height": 1350
+  }
+]

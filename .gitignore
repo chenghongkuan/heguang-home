@@ -1,0 +1,8 @@
+qa/
+scripts/
+__pycache__/
+*.log
+export_*.json
+glb_*validation.json
+export_glb.py
+validate_glb.py

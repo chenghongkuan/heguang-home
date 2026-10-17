@@ -9,7 +9,7 @@
   },
   {
     "id": "plan",
-    "title": "房间与家具平面",
+    "title": "家具平面图",
     "src": "assets/plan.webp",
     "thumb": "assets/thumbs/plan.webp",
     "width": 1800,
@@ -25,7 +25,7 @@
   },
   {
     "id": "tv",
-    "title": "客厅电视墙",
+    "title": "客厅电视收纳墙",
     "src": "assets/tv.webp",
     "thumb": "assets/thumbs/tv.webp",
     "width": 1800,
@@ -33,7 +33,7 @@
   },
   {
     "id": "bedroom-a",
-    "title": "长辈卧室 A",
+    "title": "主卧 A",
     "src": "assets/bedroom-a.webp",
     "thumb": "assets/thumbs/bedroom-a.webp",
     "width": 1800,
@@ -48,10 +48,10 @@
     "height": 1200
   },
   {
-    "id": "guest",
-    "title": "客房",
-    "src": "assets/guest.webp",
-    "thumb": "assets/thumbs/guest.webp",
+    "id": "study",
+    "title": "书房",
+    "src": "assets/study.webp",
+    "thumb": "assets/thumbs/study.webp",
     "width": 1800,
     "height": 1200
   },
@@ -60,6 +60,30 @@
     "title": "餐厨空间",
     "src": "assets/dining.webp",
     "thumb": "assets/thumbs/dining.webp",
+    "width": 1800,
+    "height": 1125
+  },
+  {
+    "id": "wardrobe",
+    "title": "主卧整墙衣柜",
+    "src": "assets/wardrobe.webp",
+    "thumb": "assets/thumbs/wardrobe.webp",
+    "width": 1800,
+    "height": 1125
+  },
+  {
+    "id": "study-storage",
+    "title": "书房整墙书柜",
+    "src": "assets/study-storage.webp",
+    "thumb": "assets/thumbs/study-storage.webp",
+    "width": 1800,
+    "height": 1125
+  },
+  {
+    "id": "river-view",
+    "title": "二楼临河窗景",
+    "src": "assets/river-view.webp",
+    "thumb": "assets/thumbs/river-view.webp",
     "width": 1800,
     "height": 1125
   },

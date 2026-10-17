@@ -10,20 +10,24 @@ const canvas = $('scene');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const b = ([x, y, z]) => new THREE.Vector3(x, z, -y);
 const views = {
-  overview: { title: '全屋鸟瞰', description: '保留三卧，让休息与相聚各得其所。', position: [22, -17, 26], target: [7.6, 5.4, 0.2], cut: 2.85 },
-  plan: { title: '家具平面', description: '图左下：长辈 A · 图中下：长辈 B · 图上：客房', position: [7.615, 5.57, 32], target: [7.615, 5.57, 0], cut: 0.45 },
+  overview: { title: '全屋鸟瞰', description: '两间卧室、一间书房，把收纳安放在日常动线里。', position: [22, -17, 26], target: [7.6, 5.4, 0.2], cut: 2.85 },
+  plan: { title: '家具与收纳平面', description: '图左下：主卧 A · 图中下：长辈 B · 图上：书房', position: [7.615, 5.57, 32], target: [7.615, 5.57, 0], cut: 0.45 },
   living: { title: '客厅 · 温润相聚', description: '胡桃木、暖白织物与水墨，共同构成家的底色。', position: [7.85, 0.83, 1.58], target: [9.55, 4.25, 1.24] },
-  tv: { title: '电视墙与茶席', description: '一处留白，一段木色，留给日常慢慢发生。', position: [11.75, 5.75, 1.62], target: [7.25, 3.55, 1.28] },
-  'bedroom-a': { title: '长辈卧室 A', description: '1.50 m 宽床 · 独立收纳 · 温润木地板', position: [3.15, 5.67, 1.53], target: [1.42, 4.12, 1.13] },
+  tv: { title: '整墙电视收纳', description: '65 寸电视嵌入柜墙，封闭储物与开放陈列结合。', position: [11.75, 5.75, 1.62], target: [7.25, 3.55, 1.28] },
+  'bedroom-a': { title: '主卧 · 长辈 A', description: '1.50 m 宽床 · 整墙衣柜 · 蜜棕橡木地板', position: [1.15, 3.03, 1.53], target: [2.28, 4.99, 1.13] },
   'bedroom-b': { title: '长辈卧室 B', description: '图中下 · 1.50 m 宽床 · 蜜棕橡木地板', position: [3.83, 5.15, 1.53], target: [5.28, 3.60, 1.15] },
-  guest: { title: '客房', description: '图上方 · 1.35 m 宽床与书桌 · 探访留宿', position: [5.74, 9.87, 1.56], target: [4.15, 8.30, 1.10] },
+  study: { title: '书房', description: '整墙书柜搭配独立书桌与阅读座。', position: [5.73, 9.91, 1.56], target: [3.98, 8.03, 1.12] },
   dining: { title: '餐厨空间', description: '木框玻璃移门，连接烟火气与相聚的时光。', position: [10.70, 2.15, 1.58], target: [14.04, 3.66, 1.28] },
+  wardrobe: { title: '主卧整墙衣柜', description: '换季衣物、日常衣物和床品集中归位。', position: [3.12, 3.02, 1.58], target: [0.70, 4.24, 1.30] },
+  'study-storage': { title: '书房整墙书柜', description: '下部封闭收纳，上部书籍与器物陈列。', position: [5.73, 9.78, 1.58], target: [3.20, 8.48, 1.29] },
+  'river-view': { title: '二楼临河窗景', description: '越过树冠与河岸花园，看与住宅平行的河道。', position: [10.25, 1.38, 1.62], target: [9.65, -12.5, -2.8] },
 };
-let renderer, scene, controls, camera, perspective, orthographic, model;
+let renderer, scene, controls, camera, perspective, orthographic, model, ground;
 let activeView = 'overview', transition, dirty = true, animationId;
 const clipPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 1.15);
 const wallMaterials = new Set();
 const ceilings = [];
+const exterior = [];
 const sectionWalls = [];
 const capMaterial = new THREE.MeshStandardMaterial({ color: '#b5af9f', roughness: 1, side: THREE.DoubleSide });
 let sectionCaps;
@@ -39,6 +43,14 @@ function toast(message) {
 }
 
 function markDirty() { dirty = true; }
+function setExterior() {
+  const visible = $('show-exterior').checked;
+  exterior.forEach(object => { object.visible = visible; });
+  if (ground) ground.position.y = visible ? -4.65 : -0.19;
+  metrics.exteriorVisible = visible;
+  if (renderer) renderer.shadowMap.needsUpdate = true;
+  markDirty();
+}
 function fitPlan() {
   const aspect = viewport.clientWidth / viewport.clientHeight;
   const width = Math.max(18.3, 14.5 * aspect);
@@ -128,6 +140,8 @@ function selectView(id, animate = true) {
   $('cutaway').checked = view.cut !== undefined;
   if (view.cut !== undefined) $('cut-height').value = view.cut;
   $('ceiling').checked = view.cut === undefined;
+  $('show-exterior').checked = !isPlan;
+  setExterior();
   setCutaway();
   const position = isOverview ? overviewPosition() : b(view.position);
   const target = b(view.target);
@@ -138,8 +152,8 @@ function selectView(id, animate = true) {
 
 function addLabels() {
   const points = [
-    ['长辈卧室 A', [1.7, 3.9, 0.9]], ['长辈卧室 B', [5.2, 3.6, 0.9]],
-    ['客房', [4.5, 9.1, 0.9]], ['客厅', [9.7, 2.7, 0.4]],
+    ['主卧 · 长辈 A', [1.7, 3.9, 0.9]], ['长辈卧室 B', [5.2, 3.6, 0.9]],
+    ['书房', [4.5, 9.1, 0.9]], ['客厅', [9.7, 2.7, 0.4]],
     ['餐厅', [12.3, 4.9, 0.9]], ['厨房', [14.15, 2.8, 0.9]],
     ['玄关', [14.0, 6.0, 0.6]], ['卫浴 A', [1.55, 7.3, 0.6]], ['卫浴 B', [6.8, 9.4, 0.6]],
   ];
@@ -201,7 +215,7 @@ function initializeViewer() {
   sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.035; sun.shadow.radius = 3;
   scene.add(sun, sun.target);
   const fill = new THREE.DirectionalLight(0xe9f0ff, 0.55); fill.position.set(12, 9, -12); scene.add(fill);
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshStandardMaterial({ color: '#e4e1d7', roughness: 1 }));
+  ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshStandardMaterial({ color: '#e4e1d7', roughness: 1 }));
   ground.rotation.x = -Math.PI / 2; ground.position.y = -0.19; ground.receiveShadow = true; scene.add(ground);
   perspective = new THREE.PerspectiveCamera(45, 1, 0.035, 300);
   orthographic = new THREE.OrthographicCamera(-10, 10, 8, -8, 0.05, 200); camera = perspective;
@@ -210,19 +224,23 @@ function initializeViewer() {
   resize(); selectView('overview', false); addLabels();
   new ResizeObserver(resize).observe(viewport);
   requestAnimationFrame(loop);
-  new GLTFLoader().load('./assets/home.glb?v=20261017-materials', gltf => {
+  new GLTFLoader().load('./assets/home.glb?v=20261017-storage-river', gltf => {
     model = gltf.scene;
     const wallPattern = /外墙|内墙|墙体|门|窗|玻璃|垭口|踢脚|吊顶|顶角|线脚|灯带|画|水墨|墨竹|电视墙|吊灯|灯具木圈|灯底漫射/;
     const materialCache = new Map();
     model.updateMatrixWorld(true);
     model.traverse(object => {
-      const role = object.userData.web_role || object.userData.architecture_role;
+      // GLTFLoader puts a multi-material node's extras on its parent Group.
+      const role = object.userData.web_role || object.userData.architecture_role || object.parent?.userData.web_role;
+      if (role) object.userData.web_role = role;
+      if (!object.userData.storage_id && object.parent?.userData.storage_id) object.userData.storage_id = object.parent.userData.storage_id;
       if (role === 'ceiling' || object.userData.hidden_by_default || /吊顶|天花|顶面/.test(object.name)) ceilings.push(object);
       if (!object.isMesh) return;
       if (role === 'wall') sectionWalls.push(new THREE.Box3().setFromObject(object));
       metrics.meshes++; metrics.triangles += (object.geometry.index ? object.geometry.index.count : object.geometry.attributes.position.count) / 3;
+      if (role === 'exterior') metrics.exteriorTriangles = (metrics.exteriorTriangles || 0) + (object.geometry.index ? object.geometry.index.count : object.geometry.attributes.position.count) / 3;
       object.castShadow = true; object.receiveShadow = true;
-      const sectioned = role === 'wall' || wallPattern.test(object.name);
+      const sectioned = role !== 'exterior' && !object.userData.storage_id && (role === 'wall' || wallPattern.test(object.name));
       const convert = original => {
         if (original.transparent && original.opacity < 0.5) object.castShadow = false;
         const key = original.uuid + ':' + sectioned;
@@ -243,8 +261,9 @@ function initializeViewer() {
     model.traverse(object => { if (object.isMesh && !Array.isArray(object.material)) meshes.push(object); });
     for (const object of meshes) {
       const ceiling = ceilings.includes(object);
-      const key = object.material.uuid + ':' + ceiling + ':' + object.castShadow;
-      if (!groups.has(key)) groups.set(key, { material: object.material, ceiling, castShadow: object.castShadow, geometries: [] });
+      const outside = object.userData.web_role === 'exterior';
+      const key = object.material.uuid + ':' + ceiling + ':' + outside + ':' + object.castShadow;
+      if (!groups.has(key)) groups.set(key, { material: object.material, ceiling, outside, castShadow: object.castShadow, geometries: [] });
       const geometry = object.geometry.clone().applyMatrix4(object.matrixWorld);
       if (!geometry.attributes.uv) geometry.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(geometry.attributes.position.count * 2), 2));
       for (const name of Object.keys(geometry.attributes)) if (!['position', 'normal', 'uv'].includes(name)) geometry.deleteAttribute(name);
@@ -258,15 +277,18 @@ function initializeViewer() {
       const geometry = mergeGeometries(group.geometries);
       group.geometries.forEach(item => item.dispose());
       const mesh = new THREE.Mesh(geometry, group.material); mesh.castShadow = group.castShadow; mesh.receiveShadow = true;
-      if (group.ceiling) ceilings.push(mesh); model.add(mesh);
+      if (group.ceiling) ceilings.push(mesh);
+      if (group.outside) exterior.push(mesh);
+      model.add(mesh);
     }
     metrics.batches = groups.size;
     metrics.texturedMaterials = [...materialCache.values()].filter(material => material.map).length;
     metrics.normalMappedMaterials = [...materialCache.values()].filter(material => material.normalMap).length;
-    scene.add(model); setCutaway();
+    metrics.exteriorBatches = exterior.length;
+    scene.add(model); setCutaway(); setExterior();
     metrics.loaded = true; metrics.wallMaterials = wallMaterials.size; metrics.ceilings = ceilings.length;
     $('progress-fill').style.width = '100%'; $('loader').classList.add('loaded');
-    $('model-status').textContent = '新中式 · 三卧全屋模型';
+    $('model-status').textContent = '新中式 · 两卧一书房 · 临河居所';
     markDirty();
   }, event => {
     const percent = event.total ? Math.min(99, Math.round(event.loaded / event.total * 100)) : null;
@@ -297,6 +319,7 @@ $('cutaway').addEventListener('change', setCutaway);
 $('cut-height').addEventListener('input', setCutaway);
 $('ceiling').addEventListener('change', setCutaway);
 $('show-labels').addEventListener('change', markDirty);
+$('show-exterior').addEventListener('change', setExterior);
 for (const [id, factor] of [['zoom-in', 0.8], ['zoom-out', 1.25]]) $(id).addEventListener('click', () => {
   if (!controls) return;
   if (camera.isOrthographicCamera) { camera.zoom = THREE.MathUtils.clamp(camera.zoom / factor, 0.5, 7); camera.updateProjectionMatrix(); }
@@ -313,18 +336,18 @@ $('capture').addEventListener('click', () => {
 });
 
 async function initializeGallery() {
-  const response = await fetch('./assets/gallery.json?v=20261017-materials');
+  const response = await fetch('./assets/gallery.json?v=20261017-storage-river');
   if (!response.ok) throw new Error('Gallery load failed');
   const images = await response.json();
-  const order = ['living', 'tv', 'dining', 'bedroom-a', 'bedroom-b', 'guest', 'overview', 'plan-labeled', 'plan'];
+  const order = ['tv', 'wardrobe', 'study-storage', 'study', 'living', 'dining', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
   images.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
   for (const item of images) {
     const figure = document.createElement('figure'); figure.className = 'gallery-card';
-    figure.dataset.category = ['living', 'tv', 'dining'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'guest'].includes(item.id) ? 'bedroom' : 'plan';
+    figure.dataset.category = ['living', 'tv', 'dining'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'wardrobe'].includes(item.id) ? 'bedroom' : ['study', 'study-storage'].includes(item.id) ? 'study' : item.id === 'river-view' ? 'river' : 'plan';
     const button = document.createElement('button'); button.setAttribute('aria-label', '查看' + item.title);
-    const image = new Image(); image.src = item.thumb + '?v=20261017-materials'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
+    const image = new Image(); image.src = item.thumb + '?v=20261017-storage-river'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
     button.append(image);
-    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261017-materials'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox').showModal(); });
+    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261017-storage-river'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox').showModal(); });
     const caption = document.createElement('figcaption');
     const name = document.createElement('span'); name.textContent = item.title;
     const arrow = document.createElement('span'); arrow.textContent = '↗'; caption.append(name, arrow);

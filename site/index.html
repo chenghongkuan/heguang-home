@@ -7,40 +7,43 @@
   <meta name="description" content="和光·新中式居所，在线探索全屋三维模型、房间布局与装修效果图。">
   <title>和光 · 新中式居所｜3D 漫游</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23755d47'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-size='42' fill='%23fff7eb'%3E和%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./style.css?v=20261017-materials">
+  <link rel="stylesheet" href="./style.css?v=20261017-storage-river">
   <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 </head>
 <body>
 <header class="header">
   <a href="#" class="brand" aria-label="和光首页"><span class="seal">和</span><span>和光<span class="brand-dot"> / </span><small>新中式居所</small></span></a>
-  <nav aria-label="主导航"><a href="#explore" class="nav-active">探索空间</a><a href="#gallery">设计效果图</a><a href="./assets/design-book.pdf?v=20261017-materials" target="_blank" rel="noopener">设计图册 ↗</a></nav>
+  <nav aria-label="主导航"><a href="#explore" class="nav-active">探索空间</a><a href="#gallery">设计效果图</a><a href="./assets/design-book.pdf?v=20261017-storage-river" target="_blank" rel="noopener">设计图册 ↗</a></nav>
 </header>
 <main>
 <section id="explore" class="explore" aria-label="交互式全屋三维模型">
   <aside class="sidebar">
     <div class="intro"><p class="eyebrow">A HOME IN HARMONY</p><h1>温润有序<br>自在相聚。</h1><p class="description">暖白、胡桃木与一笔水墨。<br>从全屋布局，走进每一处日常。</p></div>
-    <div class="room-panel"><div class="section-label"><span>选择视角</span><span>01 — 08</span></div>
+    <div class="room-panel"><div class="section-label"><span>选择视角</span><span>01 — 11</span></div>
       <div class="rooms" role="group" aria-label="模型视角">
         <button class="room active" data-view="overview" aria-pressed="true"><span class="room-icon">◇</span><span>全屋鸟瞰<small>空间与动线</small></span><span class="room-arrow">↗</span></button>
         <button class="room" data-view="plan" aria-pressed="false"><span class="room-icon">▦</span><span>家具平面<small>房间与尺度</small></span><span class="room-arrow">↗</span></button>
         <button class="room" data-view="living" aria-pressed="false"><span class="room-icon">01</span><span>客厅<small>温润相聚</small></span><span class="room-arrow">↗</span></button>
-        <button class="room" data-view="tv" aria-pressed="false"><span class="room-icon">02</span><span>电视墙与茶席<small>一处留白</small></span><span class="room-arrow">↗</span></button>
-        <button class="room" data-view="bedroom-a" aria-pressed="false"><span class="room-icon">03</span><span>长辈卧室 A<small>独立休憩</small></span><span class="room-arrow">↗</span></button>
+        <button class="room" data-view="tv" aria-pressed="false"><span class="room-icon">02</span><span>电视收纳墙<small>嵌入 65 寸电视</small></span><span class="room-arrow">↗</span></button>
+        <button class="room" data-view="bedroom-a" aria-pressed="false"><span class="room-icon">03</span><span>主卧 · 长辈 A<small>整墙衣柜</small></span><span class="room-arrow">↗</span></button>
         <button class="room" data-view="bedroom-b" aria-pressed="false"><span class="room-icon">04</span><span>长辈卧室 B<small>独立休息</small></span><span class="room-arrow">↗</span></button>
-        <button class="room" data-view="guest" aria-pressed="false"><span class="room-icon">05</span><span>客房<small>探访与留宿</small></span><span class="room-arrow">↗</span></button>
+        <button class="room" data-view="study" aria-pressed="false"><span class="room-icon">05</span><span>书房<small>书柜与阅读</small></span><span class="room-arrow">↗</span></button>
         <button class="room" data-view="dining" aria-pressed="false"><span class="room-icon">06</span><span>餐厨空间<small>一餐一饭</small></span><span class="room-arrow">↗</span></button>
+        <button class="room" data-view="wardrobe" aria-pressed="false"><span class="room-icon">07</span><span>主卧整墙衣柜<small>衣物与床品</small></span><span class="room-arrow">↗</span></button>
+        <button class="room" data-view="study-storage" aria-pressed="false"><span class="room-icon">08</span><span>书房整墙书柜<small>书籍与杂物</small></span><span class="room-arrow">↗</span></button>
+        <button class="room" data-view="river-view" aria-pressed="false"><span class="room-icon">09</span><span>二楼临河窗景<small>河岸花园</small></span><span class="room-arrow">↗</span></button>
       </div>
     </div>
-    <div class="sidebar-foot"><span class="status-dot"></span>三间卧室 · 两人常住</div>
+    <div class="sidebar-foot"><span class="status-dot"></span>两卧一书房 · 两人常住</div>
   </aside>
   <div class="viewport" id="viewport">
     <canvas id="scene" aria-label="全屋三维模型。拖动旋转，滚轮缩放，右键拖动平移；也可用左侧按钮切换房间。" tabindex="0"></canvas>
-    <div class="view-heading"><span class="live-badge">交互式 3D</span><h2 id="view-title">全屋鸟瞰</h2><p id="view-description">保留三卧，让休息与相聚各得其所。</p></div>
+    <div class="view-heading"><span class="live-badge">交互式 3D</span><h2 id="view-title">全屋鸟瞰</h2><p id="view-description">两间卧室、一间书房，把收纳安放在日常动线里。</p></div>
     <div id="labels" class="labels" aria-hidden="true"></div>
     <div id="loader" class="loader" role="status"><span class="loader-mark">和</span><strong id="load-title">正在展开这间家</strong><p id="load-detail">加载三维模型…</p><div class="progress"><i id="progress-fill"></i></div><a href="#gallery">先看设计效果图 ↓</a></div>
     <div class="quick-tools" aria-label="视图工具"><button id="reset" title="回到全屋鸟瞰" aria-label="回到全屋鸟瞰">⌂</button><button id="zoom-in" title="放大" aria-label="放大">＋</button><button id="zoom-out" title="缩小" aria-label="缩小">−</button><button id="capture" title="保存当前视图" aria-label="保存当前视图">▣</button><button id="fullscreen" title="全屏" aria-label="全屏">⛶</button></div>
     <div class="viewer-bottom">
-      <div class="display-controls"><label><input id="cutaway" type="checkbox" checked><span>剖开墙体</span></label><div class="cut-control" id="cut-control"><input id="cut-height" type="range" min="0.35" max="2.85" step="0.05" value="2.85" aria-label="剖切高度"><output id="height-value">2.85 m</output></div><span class="control-divider"></span><label><input id="ceiling" type="checkbox"><span>顶面</span></label><label><input id="show-labels" type="checkbox" checked><span>房间标注</span></label></div>
+      <div class="display-controls"><label><input id="cutaway" type="checkbox" checked><span>剖开墙体</span></label><div class="cut-control" id="cut-control"><input id="cut-height" type="range" min="0.35" max="2.85" step="0.05" value="2.85" aria-label="剖切高度"><output id="height-value">2.85 m</output></div><span class="control-divider"></span><label><input id="ceiling" type="checkbox"><span>顶面</span></label><label><input id="show-labels" type="checkbox" checked><span>房间标注</span></label><label><input id="show-exterior" type="checkbox" checked><span>河边花园</span></label></div>
       <div class="viewer-foot"><p class="desktop-hint">左键旋转 · 滚轮缩放 · 右键平移 · 双击定位</p><p class="mobile-hint">单指旋转 · 双指缩放与移动</p><span id="model-status">新中式 · 概念设计</span></div>
     </div>
     <p id="toast" class="toast" role="status"></p>
@@ -48,13 +51,13 @@
 </section>
 <section id="gallery" class="gallery-section">
   <div class="gallery-head"><div><p class="eyebrow">LIGHT, MATERIAL & EVERYDAY LIFE</p><h2>把日常，安放在光里。</h2></div><p>在三维空间里了解布局，<br>在高清效果图中感受材质与光。</p></div>
-  <div class="gallery-tabs" role="group" aria-label="效果图分类"><button data-filter="all" class="active" aria-pressed="true">全部空间</button><button data-filter="public" aria-pressed="false">客餐厅</button><button data-filter="bedroom" aria-pressed="false">卧室</button><button data-filter="plan" aria-pressed="false">全屋布局</button></div>
+  <div class="gallery-tabs" role="group" aria-label="效果图分类"><button data-filter="all" class="active" aria-pressed="true">全部空间</button><button data-filter="public" aria-pressed="false">客餐厅</button><button data-filter="bedroom" aria-pressed="false">卧室</button><button data-filter="study" aria-pressed="false">书房</button><button data-filter="river" aria-pressed="false">临河窗景</button><button data-filter="plan" aria-pressed="false">全屋布局</button></div>
   <div id="gallery-grid" class="gallery-grid"></div>
-  <div class="design-note"><div><h3>一份可以慢慢打磨的家的提案</h3><p>三间卧室保留，两位长辈分房休息，图中下为长辈卧室 B，图上方设客房。卧室采用蜜棕橡木地板，客餐厅铺暖灰米色哑光砖；胡桃木与亚麻延续温润的底色。</p><p class="fineprint">概念方案，净高暂按 2.80 m。三维预览的光影与高清渲染略有差异；实际尺寸、结构和施工做法需现场复核。图面方位不代表实际朝向。</p></div><a class="download" href="./assets/design-book.pdf?v=20261017-materials" target="_blank" rel="noopener">查看完整设计图册 <span>↗</span></a></div>
+  <div class="design-note"><div><h3>一份可以慢慢打磨的家的提案</h3><p>两位长辈分房休息，左下主卧配置整墙衣柜，上方改为书房。65 寸电视嵌入整墙收纳柜，玄关、餐边、家政与卫浴补充储物；窗外以二楼视角呈现河岸花园。</p><p class="fineprint">概念方案，净高暂按 2.80 m。三维预览的光影与高清渲染略有差异；实际尺寸、结构和施工做法需现场复核。图面方位不代表实际朝向；临河面暂按客厅大窗一侧，园地低于室内约 3.5 m，外景为意向设计。</p></div><a class="download" href="./assets/design-book.pdf?v=20261017-storage-river" target="_blank" rel="noopener">查看完整设计图册 <span>↗</span></a></div>
   <footer><span>和光 · 新中式居所</span><span>BLENDER × WEB 3D</span><a href="https://github.com/chenghongkuan/heguang-home" target="_blank" rel="noopener">GitHub ↗</a></footer>
 </section>
 </main>
 <dialog id="lightbox"><button id="close-lightbox" aria-label="关闭图片">×</button><img id="lightbox-image" alt=""><p id="lightbox-caption"></p></dialog>
-<script type="module" src="./app.js?v=20261017-materials"></script>
+<script type="module" src="./app.js?v=20261017-storage-river"></script>
 </body>
 </html>

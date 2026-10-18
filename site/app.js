@@ -16,10 +16,10 @@ const views = {
   tv: { title: '整墙电视收纳', description: '65 寸电视嵌入柜墙，封闭储物与开放陈列结合。', position: [11.75, 5.75, 1.62], target: [7.25, 3.55, 1.28] },
   'bedroom-a': { title: '主卧 · 长辈 A', description: '床头靠左侧实墙 · 新增浅柜后床尾约 0.77 m', position: [2.87, 5.95, 1.57], target: [0.80, 3.55, 1.12] },
   'bedroom-b': { title: '长辈卧室 B', description: '图中下 · 1.50 m 宽床 · 蜜棕橡木地板', position: [3.83, 5.15, 1.53], target: [5.28, 3.60, 1.15] },
-  study: { title: '书房', description: '东侧原门封墙 · 南侧新门朝走廊 · 整墙书柜与书桌', position: [5.73, 9.91, 1.56], target: [3.98, 8.03, 1.12] },
+  study: { title: '书房', description: '南侧走廊门向内开 · 右侧书桌 · 左侧书柜 · 窗边阅读', position: [3.67, 7.48, 1.58], target: [5.05, 9.32, 1.12] },
   dining: { title: '餐厨空间', description: '木框玻璃移门，连接烟火气与相聚的时光。', position: [10.70, 2.15, 1.58], target: [14.04, 3.66, 1.28] },
   wardrobe: { title: '主卧空地整墙衣柜', description: '卫生间保持原尺寸 · 3.15 米浅层衣柜墙 · 叠衣与床品收纳', position: [1.03, 5.65, 1.58], target: [3.26, 4.13, 1.32] },
-  'study-storage': { title: '书房整墙书柜', description: '下部封闭收纳，上部书籍与器物陈列。', position: [5.73, 9.78, 1.58], target: [3.20, 8.48, 1.29] },
+  'study-storage': { title: '书房整墙书柜', description: '2.98 m 整墙书柜 · 中央留空 · 书房门向内开启', position: [5.72, 9.85, 1.58], target: [3.92, 7.68, 1.17] },
   'river-view': { title: '二楼临河窗景', description: '越过树冠与河岸花园，看与住宅平行的河道。', position: [10.25, 1.38, 1.62], target: [9.65, -12.5, -2.8] },
 };
 let renderer, scene, controls, camera, perspective, orthographic, model, ground;
@@ -224,7 +224,7 @@ function initializeViewer() {
   resize(); selectView('overview', false); addLabels();
   new ResizeObserver(resize).observe(viewport);
   requestAnimationFrame(loop);
-  new GLTFLoader().load('./assets/home.glb?v=20261017-master-shallow', gltf => {
+  new GLTFLoader().load('./assets/home.glb?v=20261018-study-inward', gltf => {
     model = gltf.scene;
     const wallPattern = /外墙|内墙|墙体|门|窗|玻璃|垭口|踢脚|吊顶|顶角|线脚|灯带|画|水墨|墨竹|电视墙|吊灯|灯具木圈|灯底漫射/;
     const materialCache = new Map();
@@ -336,7 +336,7 @@ $('capture').addEventListener('click', () => {
 });
 
 async function initializeGallery() {
-  const response = await fetch('./assets/gallery.json?v=20261017-master-shallow');
+  const response = await fetch('./assets/gallery.json?v=20261018-study-inward');
   if (!response.ok) throw new Error('Gallery load failed');
   const images = await response.json();
   const order = ['tv', 'wardrobe', 'study-storage', 'study', 'living', 'dining', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
@@ -345,9 +345,9 @@ async function initializeGallery() {
     const figure = document.createElement('figure'); figure.className = 'gallery-card';
     figure.dataset.category = ['living', 'tv', 'dining'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'wardrobe'].includes(item.id) ? 'bedroom' : ['study', 'study-storage'].includes(item.id) ? 'study' : item.id === 'river-view' ? 'river' : 'plan';
     const button = document.createElement('button'); button.setAttribute('aria-label', '查看' + item.title);
-    const image = new Image(); image.src = item.thumb + '?v=20261017-master-shallow'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
+    const image = new Image(); image.src = item.thumb + '?v=20261018-study-inward'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
     button.append(image);
-    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261017-master-shallow'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox').showModal(); });
+    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261018-study-inward'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox').showModal(); });
     const caption = document.createElement('figcaption');
     const name = document.createElement('span'); name.textContent = item.title;
     const arrow = document.createElement('span'); arrow.textContent = '↗'; caption.append(name, arrow);

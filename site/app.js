@@ -18,7 +18,7 @@ const views = {
   'bedroom-b': { title: '长辈卧室 B', description: '图中下 · 1.50 m 宽床 · 蜜棕橡木地板', position: [3.83, 5.15, 1.53], target: [5.28, 3.60, 1.15] },
   study: { title: '书房', description: '整墙书柜搭配独立书桌与阅读座。', position: [5.73, 9.91, 1.56], target: [3.98, 8.03, 1.12] },
   dining: { title: '餐厨空间', description: '木框玻璃移门，连接烟火气与相聚的时光。', position: [10.70, 2.15, 1.58], target: [14.04, 3.66, 1.28] },
-  wardrobe: { title: '主卧整墙浅柜', description: '3.15 米整墙浅柜 · 总深 35 厘米 · 叠衣与床品收纳', position: [1.03, 5.65, 1.58], target: [3.26, 4.13, 1.32] },
+  wardrobe: { title: '主卧空地整墙衣柜', description: '卫生间保持原尺寸 · 3.15 米浅层衣柜墙 · 叠衣与床品收纳', position: [1.03, 5.65, 1.58], target: [3.26, 4.13, 1.32] },
   'study-storage': { title: '书房整墙书柜', description: '下部封闭收纳，上部书籍与器物陈列。', position: [5.73, 9.78, 1.58], target: [3.20, 8.48, 1.29] },
   'river-view': { title: '二楼临河窗景', description: '越过树冠与河岸花园，看与住宅平行的河道。', position: [10.25, 1.38, 1.62], target: [9.65, -12.5, -2.8] },
 };

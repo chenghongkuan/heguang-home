@@ -5,7 +5,7 @@
 **在线访问：[和光 · 3D 空间](https://chenghongkuan.github.io/heguang-home/)**
 
 - 全屋鸟瞰、正交平面、客餐厅与两间卧室，以及书房、整墙电视收纳、主卧衣柜、书房书柜和二楼窗景，共 11 个视角。
-- 65 英寸电视嵌入整墙收纳柜，主卧保留约 2 米挂衣柜，新增 3.15 米长、35 厘米总深的整墙浅柜；书房及其他适用位置补充储物。
+- 65 英寸电视嵌入整墙收纳柜，主卧卫生间保持原尺寸和洁具，衣柜直接布置在卧室空地：保留约 2 米挂衣柜，新增 3.15 米长、35 厘米总深的整墙浅层衣柜墙；书房及其他适用位置补充储物。
 - 二楼窗外为三维河道与花园，可切换外景显示。
 - 旋转、缩放、平移、双击定位；网页默认墙体剖切高度为 2.85 m，可调节剖切高度、切换顶面及房间标注。
 - 手机单指旋转、双指缩放与移动，支持当前视图截图保存。
@@ -23,7 +23,7 @@ python3 -m http.server 8000 --directory site
 
 ## 文件
 
-- `site/assets/home.glb`：从 Blender 4.5.3 LTS 导出的全屋及二楼河园模型，25,841,596 字节（约 24.6 MiB），独立网格共 384,814 个三角形（实例展开数量另计），单位米，Y 轴向上。
+- `site/assets/home.glb`：从 Blender 4.5.3 LTS 导出的全屋及二楼河园模型，25,842,756 字节（约 24.6 MiB），独立网格共 384,814 个三角形（实例展开数量另计），单位米，Y 轴向上。
 - `site/app.js`：Three.js 查看器、11 视角、剖切、外景与图集逻辑；将静态几何按材质合并，减少绘制调用。
 - `site/assets/`：12 张 WebP 图片、缩略图、图集索引和 PDF 图册。
 - `site/vendor/`：固定版本 Three.js 0.186.1 及所需模块，运行时不依赖外部 CDN；MIT 许可见 `THREE-LICENSE.txt`。
@@ -41,7 +41,7 @@ python3 -m http.server 8000 --directory site
 
 本项目是概念设计，非施工图。净高暂按 2.80 m、吊顶下表面按 2.68 m；尺寸、结构、机电、柜体安装与适老细节需现场复核。局部通行空间有限；图面上、下、左、右不代表实际地理朝向。
 
-床头布局参考了 [IKEA 的实墙床头样板方案](https://www.ikea.com/us/en/rooms/bedroom/gallery/a-modern-bedroom-thats-set-to-soothe-pub91184170/)；紧凑空间采用移门参考 [IKEA 的小卧室收纳方案](https://www.ikea.com/us/en/rooms/bedroom/gallery/a-modern-small-bedroom-where-you-can-show-off-your-best-side-pxm81fd4900755a11ed8736ff69fe285fe9/)。具体床位和净距按本户型重新计算。本版在保留 2 米长挂衣柜和床向的基础上增加东侧浅柜，床尾通道由约 1.13 m 缩为约 0.77 m，呈现收纳增加与通道收窄的取舍；南侧约 0.295 m 间隙不作为通道。浅柜端部避开原房门和飘窗，柜顶以收口板接至吊顶。
+床头布局参考了 [IKEA 的实墙床头样板方案](https://www.ikea.com/us/en/rooms/bedroom/gallery/a-modern-bedroom-thats-set-to-soothe-pub91184170/)；紧凑空间采用移门参考 [IKEA 的小卧室收纳方案](https://www.ikea.com/us/en/rooms/bedroom/gallery/a-modern-small-bedroom-where-you-can-show-off-your-best-side-pxm81fd4900755a11ed8736ff69fe285fe9/)。具体床位和净距按本户型重新计算。本版卫生间保持原尺寸，衣柜直接放在主卧空地：保留 2 米长挂衣柜并增加东侧 3.15 米浅层衣柜墙，床尾净距约 0.77 m，南侧约 0.295 m 间隙不作为通道。柜体端部避开原房门和飘窗，柜顶以收口板接至吊顶。
 
 ## 来源
 

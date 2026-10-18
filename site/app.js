@@ -16,7 +16,7 @@ const views = {
   tv: { title: '整墙电视收纳', description: '65 寸电视嵌入柜墙，封闭储物与开放陈列结合。', position: [11.75, 5.75, 1.62], target: [7.25, 3.55, 1.28] },
   'bedroom-a': { title: '主卧 · 长辈 A', description: '床头靠左侧实墙 · 新增浅柜后床尾约 0.77 m', position: [2.87, 5.95, 1.57], target: [0.80, 3.55, 1.12] },
   'bedroom-b': { title: '长辈卧室 B', description: '图中下 · 1.50 m 宽床 · 蜜棕橡木地板', position: [3.83, 5.15, 1.53], target: [5.28, 3.60, 1.15] },
-  study: { title: '书房', description: '整墙书柜搭配独立书桌与阅读座。', position: [5.73, 9.91, 1.56], target: [3.98, 8.03, 1.12] },
+  study: { title: '书房', description: '东侧原门封墙 · 南侧新门朝走廊 · 整墙书柜与书桌', position: [5.73, 9.91, 1.56], target: [3.98, 8.03, 1.12] },
   dining: { title: '餐厨空间', description: '木框玻璃移门，连接烟火气与相聚的时光。', position: [10.70, 2.15, 1.58], target: [14.04, 3.66, 1.28] },
   wardrobe: { title: '主卧空地整墙衣柜', description: '卫生间保持原尺寸 · 3.15 米浅层衣柜墙 · 叠衣与床品收纳', position: [1.03, 5.65, 1.58], target: [3.26, 4.13, 1.32] },
   'study-storage': { title: '书房整墙书柜', description: '下部封闭收纳，上部书籍与器物陈列。', position: [5.73, 9.78, 1.58], target: [3.20, 8.48, 1.29] },

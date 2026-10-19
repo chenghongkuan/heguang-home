@@ -102,5 +102,37 @@
     "thumb": "assets/thumbs/plan-labeled.webp",
     "width": 1800,
     "height": 1350
+  },
+  {
+    "id": "dimensions",
+    "title": "已知尺寸核对图 · 原图与实测",
+    "src": "assets/dimensions.webp",
+    "thumb": "assets/thumbs/dimensions.webp",
+    "width": 4800,
+    "height": 3500
+  },
+  {
+    "id": "dimensions-common",
+    "title": "家具方案尺寸 · 客餐玄关",
+    "src": "assets/dimensions-common.webp",
+    "thumb": "assets/thumbs/dimensions-common.webp",
+    "width": 4800,
+    "height": 3400
+  },
+  {
+    "id": "dimensions-bedrooms",
+    "title": "家具与实测台面 · 卧室书房",
+    "src": "assets/dimensions-bedrooms.webp",
+    "thumb": "assets/thumbs/dimensions-bedrooms.webp",
+    "width": 4800,
+    "height": 3400
+  },
+  {
+    "id": "dimensions-service",
+    "title": "家具方案尺寸 · 厨房卫浴",
+    "src": "assets/dimensions-service.webp",
+    "thumb": "assets/thumbs/dimensions-service.webp",
+    "width": 4800,
+    "height": 3400
   }
 ]

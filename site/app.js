@@ -14,13 +14,13 @@ const views = {
   plan: { title: '家具与收纳平面', description: '图左下：主卧 A · 图中下：长辈 B · 图上：书房', position: [7.615, 5.57, 32], target: [7.615, 5.57, 0], cut: 0.45 },
   living: { title: '客厅 · 温润相聚', description: '胡桃木、暖白织物与水墨，共同构成家的底色。', position: [7.85, 0.83, 1.58], target: [9.55, 4.25, 1.24] },
   tv: { title: '整墙电视收纳', description: '65 寸电视嵌入柜墙，封闭储物与开放陈列结合。', position: [11.75, 5.75, 1.62], target: [7.25, 3.55, 1.28] },
-  'bedroom-a': { title: '主卧 · 长辈 A', description: '床头靠左墙 · 1.35 × 1.90 m 床 · 床尾约 0.55 m', position: [2.65, 5.82, 1.57], target: [0.90, 3.55, 1.10] },
-  'bedroom-b': { title: '长辈卧室 B', description: '图中下 · 1.50 m 宽床 · 蜜棕橡木地板', position: [3.83, 5.15, 1.53], target: [5.28, 3.60, 1.15] },
+  'bedroom-a': { title: '主卧 · 长辈 A', description: '方案：1.35 × 1.90 m 床 · 床尾局部净距约 0.55 m，现场待测', position: [2.65, 5.82, 1.57], target: [0.90, 3.55, 1.10] },
+  'bedroom-b': { title: '长辈卧室 B', description: '方案：1.50 m 宽床 · 图中下 · 蜜棕橡木地板', position: [3.83, 5.15, 1.53], target: [5.28, 3.60, 1.15] },
   study: { title: '书房', description: '南侧走廊门向内开 · 右侧书桌 · 左侧书柜 · 窗边阅读', position: [3.67, 7.48, 1.58], target: [5.05, 9.32, 1.12] },
   dining: { title: '餐厨空间', description: '木框玻璃移门，连接烟火气与相聚的时光。', position: [10.70, 2.15, 1.58], target: [14.04, 3.66, 1.28] },
   entry: { title: '玄关', description: '换鞋收纳 · 全身镜 · 门后留空', position: [13.12, 6.80, 1.45], target: [14.12, 5.65, 1.30] },
-  wardrobe: { title: '主卧窗边齐平衣柜', description: '卫生间保持原尺寸 · 双轨滑门横向开启 · 床尾约 0.55 m', position: [0.72, 5.65, 1.58], target: [2.90, 4.08, 1.28] },
-  'study-storage': { title: '书房整墙书柜', description: '2.98 m 书柜与窗边墙垛齐平 · 书房门向内开启', position: [5.45, 7.95, 1.58], target: [3.70, 9.65, 1.25] },
+  wardrobe: { title: '主卧窗边齐平衣柜', description: '双轨滑门 · 方案床尾局部净距约 0.55 m，现场待测', position: [0.72, 5.65, 1.58], target: [2.90, 4.08, 1.28] },
+  'study-storage': { title: '书房整墙书柜', description: '方案：2.98 m 书柜 · 柜面齐平 · 书房门向内开启', position: [5.45, 7.95, 1.58], target: [3.70, 9.65, 1.25] },
   'river-view': { title: '二楼临河窗景', description: '越过树冠与河岸花园，看与住宅平行的河道。', position: [10.25, 1.38, 1.62], target: [9.65, -12.5, -2.8] },
 };
 let renderer, scene, controls, camera, perspective, orthographic, model, ground;
@@ -33,7 +33,9 @@ const sectionWalls = [];
 const capMaterial = new THREE.MeshStandardMaterial({ color: '#b5af9f', roughness: 1, side: THREE.DoubleSide });
 let sectionCaps;
 const labels = [];
-const metrics = { loaded: false, meshes: 0, triangles: 0, view: 'overview' };
+const metrics = { loaded: false, meshes: 0, triangles: 0, view: 'overview', measurementItems: 0, selectedMeasurementId: null };
+const measurements = new Map();
+let selectionOutline, measurementClickTimer;
 window.__viewer = metrics;
 
 function toast(message) {
@@ -44,6 +46,64 @@ function toast(message) {
 }
 
 function markDirty() { dirty = true; }
+function selectMeasurement(id) {
+  clearTimeout(measurementClickTimer);
+  if (selectionOutline) {
+    selectionOutline.geometry.dispose(); selectionOutline.material.dispose();
+    scene.remove(selectionOutline); selectionOutline = null;
+  }
+  const item = measurements.get(id);
+  metrics.selectedMeasurementId = item?.id || null;
+  $('furniture-select').value = item?.id || '';
+  $('measurement-card').hidden = !item;
+  if (item) {
+    $('measurement-title').textContent = `${item.code ? item.code + ' · ' : ''}${item.name}`;
+    $('measurement-room').textContent = item.room;
+    $('measurement-source').textContent = item.source_label;
+    $('measurement-source').dataset.source = item.source;
+    $('measurement-values').replaceChildren();
+    for (const dimension of item.dimensions) {
+      const label = document.createElement('dt'), value = document.createElement('dd');
+      label.textContent = dimension.label;
+      value.textContent = Number.isFinite(dimension.value_mm)
+        ? (dimension.value_mm / 10).toLocaleString('zh-CN', { maximumFractionDigits: 2 }) + ' cm'
+        : (dimension.status || '待人工测量');
+      $('measurement-values').append(label, value);
+    }
+    $('measurement-note').textContent = item.note || '';
+    // The bounds only locate the selection; displayed dimensions come from the source record.
+    const [xmin, xmax, ymin, ymax, zmin, zmax] = item.bounds_m;
+    const bounds = new THREE.Box3(b([xmin, ymax, zmin]), b([xmax, ymin, zmax]));
+    selectionOutline = new THREE.Box3Helper(bounds, '#b4792d');
+    selectionOutline.material.depthTest = true;
+    scene.add(selectionOutline);
+  }
+  markDirty();
+}
+async function initializeMeasurements() {
+  const response = await fetch('./assets/dimensions.json?v=20261019-measurements');
+  if (!response.ok) throw new Error('Dimensions load failed');
+  const data = await response.json();
+  for (const item of data.items) {
+    measurements.set(item.id, item);
+    const option = document.createElement('option');
+    option.value = item.id; option.textContent = `${item.code ? item.code + ' · ' : ''}${item.room} · ${item.name}`;
+    $('furniture-select').append(option);
+  }
+  metrics.measurementItems = measurements.size;
+  metrics.measurementsLoaded = true;
+  $('furniture-select').disabled = !metrics.loaded;
+}
+function visibleHit(event) {
+  const rect = canvas.getBoundingClientRect(), ray = new THREE.Raycaster();
+  ray.setFromCamera(new THREE.Vector2((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1), camera);
+  return ray.intersectObjects(sectionCaps ? [model, sectionCaps] : [model], true).find(hit => {
+    for (let object = hit.object; object; object = object.parent) if (!object.visible) return false;
+    const material = Array.isArray(hit.object.material) ? hit.object.material[hit.face.materialIndex] : hit.object.material;
+    if (!material.visible || (material.transparent && material.opacity < 0.5)) return false;
+    return !material.clippingPlanes?.some(plane => plane.distanceToPoint(hit.point) < 0);
+  });
+}
 function setExterior() {
   const visible = $('show-exterior').checked;
   exterior.forEach(object => { object.visible = visible; });
@@ -117,6 +177,7 @@ function setCutaway() {
 function selectView(id, animate = true) {
   if (!views[id] || !controls) return;
   const view = views[id];
+  selectMeasurement(null);
   activeView = id; metrics.view = id;
   $('view-title').textContent = view.title;
   $('view-description').textContent = view.description;
@@ -225,7 +286,7 @@ function initializeViewer() {
   resize(); selectView('overview', false); addLabels();
   new ResizeObserver(resize).observe(viewport);
   requestAnimationFrame(loop);
-  new GLTFLoader().load('./assets/home.glb?v=20261019-entry-reset', gltf => {
+  new GLTFLoader().load('./assets/home.glb?v=20261019-measurements', gltf => {
     model = gltf.scene;
     const wallPattern = /外墙|内墙|墙体|门|窗|玻璃|垭口|踢脚|吊顶|顶角|线脚|灯带|画|水墨|墨竹|电视墙|吊灯|灯具木圈|灯底漫射/;
     const materialCache = new Map();
@@ -234,6 +295,7 @@ function initializeViewer() {
       // GLTFLoader puts a multi-material node's extras on its parent Group.
       const role = object.userData.web_role || object.userData.architecture_role || object.parent?.userData.web_role;
       if (role) object.userData.web_role = role;
+      if (!object.userData.measurement_id && object.parent?.userData.measurement_id) object.userData.measurement_id = object.parent.userData.measurement_id;
       if (!object.userData.storage_id && object.parent?.userData.storage_id) object.userData.storage_id = object.parent.userData.storage_id;
       if (role === 'ceiling' || object.userData.hidden_by_default || /吊顶|天花|顶面/.test(object.name)) ceilings.push(object);
       if (!object.isMesh) return;
@@ -241,7 +303,7 @@ function initializeViewer() {
       metrics.meshes++; metrics.triangles += (object.geometry.index ? object.geometry.index.count : object.geometry.attributes.position.count) / 3;
       if (role === 'exterior') metrics.exteriorTriangles = (metrics.exteriorTriangles || 0) + (object.geometry.index ? object.geometry.index.count : object.geometry.attributes.position.count) / 3;
       object.castShadow = true; object.receiveShadow = true;
-      const sectioned = role !== 'exterior' && !object.userData.storage_id && (role === 'wall' || wallPattern.test(object.name));
+      const sectioned = role !== 'exterior' && !object.userData.storage_id && !object.userData.measurement_id && (role === 'wall' || wallPattern.test(object.name));
       const convert = original => {
         if (original.transparent && original.opacity < 0.5) object.castShadow = false;
         const key = original.uuid + ':' + sectioned;
@@ -263,8 +325,9 @@ function initializeViewer() {
     for (const object of meshes) {
       const ceiling = ceilings.includes(object);
       const outside = object.userData.web_role === 'exterior';
-      const key = object.material.uuid + ':' + ceiling + ':' + outside + ':' + object.castShadow;
-      if (!groups.has(key)) groups.set(key, { material: object.material, ceiling, outside, castShadow: object.castShadow, geometries: [] });
+      const measurementId = object.userData.measurement_id || '';
+      const key = object.material.uuid + ':' + ceiling + ':' + outside + ':' + object.castShadow + ':' + measurementId;
+      if (!groups.has(key)) groups.set(key, { material: object.material, ceiling, outside, measurementId, castShadow: object.castShadow, geometries: [] });
       const geometry = object.geometry.clone().applyMatrix4(object.matrixWorld);
       if (!geometry.attributes.uv) geometry.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(geometry.attributes.position.count * 2), 2));
       for (const name of Object.keys(geometry.attributes)) if (!['position', 'normal', 'uv'].includes(name)) geometry.deleteAttribute(name);
@@ -278,6 +341,7 @@ function initializeViewer() {
       const geometry = mergeGeometries(group.geometries);
       group.geometries.forEach(item => item.dispose());
       const mesh = new THREE.Mesh(geometry, group.material); mesh.castShadow = group.castShadow; mesh.receiveShadow = true;
+      if (group.measurementId) mesh.userData.measurement_id = group.measurementId;
       if (group.ceiling) ceilings.push(mesh);
       if (group.outside) exterior.push(mesh);
       model.add(mesh);
@@ -287,7 +351,7 @@ function initializeViewer() {
     metrics.normalMappedMaterials = [...materialCache.values()].filter(material => material.normalMap).length;
     metrics.exteriorBatches = exterior.length;
     scene.add(model); setCutaway(); setExterior();
-    metrics.loaded = true; metrics.wallMaterials = wallMaterials.size; metrics.ceilings = ceilings.length;
+    metrics.loaded = true; $('furniture-select').disabled = !metrics.measurementsLoaded; metrics.wallMaterials = wallMaterials.size; metrics.ceilings = ceilings.length;
     $('progress-fill').style.width = '100%'; $('loader').classList.add('loaded');
     $('model-status').textContent = '新中式 · 两卧一书房 · 临河居所';
     markDirty();
@@ -300,20 +364,37 @@ function initializeViewer() {
     $('load-title').textContent = '模型暂时未能载入';
     $('load-detail').textContent = '请刷新重试，也可以先浏览下方效果图。';
   });
+  const pointers = new Set();
+  let tap;
+  canvas.addEventListener('pointerdown', event => {
+    clearTimeout(measurementClickTimer);
+    pointers.add(event.pointerId);
+    tap = pointers.size === 1 && event.button === 0 ? { id: event.pointerId, x: event.clientX, y: event.clientY, moved: false } : null;
+  });
+  canvas.addEventListener('pointermove', event => {
+    if (tap?.id === event.pointerId && Math.hypot(event.clientX - tap.x, event.clientY - tap.y) > 7) tap.moved = true;
+  });
+  canvas.addEventListener('pointerup', event => {
+    if (model && tap?.id === event.pointerId && !tap.moved) {
+      const id = visibleHit(event)?.object.userData.measurement_id;
+      if (event.pointerType === 'touch') selectMeasurement(id);
+      else measurementClickTimer = setTimeout(() => selectMeasurement(id), 300);
+    }
+    pointers.delete(event.pointerId); tap = null;
+  });
+  canvas.addEventListener('pointercancel', event => { pointers.delete(event.pointerId); tap = null; });
   canvas.addEventListener('dblclick', event => {
     if (!model) return;
-    const rect = canvas.getBoundingClientRect(), ray = new THREE.Raycaster();
-    ray.setFromCamera(new THREE.Vector2((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1), camera);
-    const hit = ray.intersectObject(model).find(hit => {
-      for (let object = hit.object; object; object = object.parent) if (!object.visible) return false;
-      const material = Array.isArray(hit.object.material) ? hit.object.material[0] : hit.object.material;
-      return !material.clippingPlanes?.length || hit.point.y <= clipPlane.constant;
-    });
+    selectMeasurement(null);
+    const hit = visibleHit(event);
     if (hit) { controls.target.copy(hit.point); controls.update(); markDirty(); }
   });
   canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); cancelAnimationFrame(animationId); toast('图形资源暂时不足，请刷新页面恢复。'); });
 }
 
+$('furniture-select').addEventListener('change', event => selectMeasurement(event.target.value));
+$('close-measurement').addEventListener('click', () => { selectMeasurement(null); canvas.focus({ preventScroll: true }); });
+document.addEventListener('keydown', event => { if (event.key === 'Escape') selectMeasurement(null); });
 document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => selectView(button.dataset.view)));
 $('reset').addEventListener('click', () => selectView('overview'));
 $('cutaway').addEventListener('change', setCutaway);
@@ -337,18 +418,20 @@ $('capture').addEventListener('click', () => {
 });
 
 async function initializeGallery() {
-  const response = await fetch('./assets/gallery.json?v=20261019-entry-reset');
+  const response = await fetch('./assets/gallery.json?v=20261019-measurements');
   if (!response.ok) throw new Error('Gallery load failed');
   const images = await response.json();
-  const order = ['tv', 'wardrobe', 'study-storage', 'study', 'living', 'dining', 'entry', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
-  images.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+  const order = ['dimensions', 'dimensions-common', 'dimensions-bedrooms', 'dimensions-service', 'tv', 'wardrobe', 'study-storage', 'study', 'living', 'dining', 'entry', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
+  const rank = item => order.includes(item.id) ? order.indexOf(item.id) : item.id.includes('dimensions') ? 4.5 : order.length;
+  images.sort((a, b) => rank(a) - rank(b));
   for (const item of images) {
     const figure = document.createElement('figure'); figure.className = 'gallery-card';
+    figure.dataset.imageId = item.id;
     figure.dataset.category = ['living', 'tv', 'dining', 'entry'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'wardrobe'].includes(item.id) ? 'bedroom' : ['study', 'study-storage'].includes(item.id) ? 'study' : item.id === 'river-view' ? 'river' : 'plan';
     const button = document.createElement('button'); button.setAttribute('aria-label', '查看' + item.title);
-    const image = new Image(); image.src = item.thumb + '?v=20261019-entry-reset'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
+    const image = new Image(); image.src = item.thumb + '?v=20261019-measurements'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
     button.append(image);
-    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261019-entry-reset'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox').showModal(); });
+    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261019-measurements'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox-original').href = item.src + '?v=20261019-measurements'; $('lightbox').showModal(); });
     const caption = document.createElement('figcaption');
     const name = document.createElement('span'); name.textContent = item.title;
     const arrow = document.createElement('span'); arrow.textContent = '↗'; caption.append(name, arrow);
@@ -361,6 +444,8 @@ document.querySelectorAll('[data-filter]').forEach(button => button.addEventList
 }));
 $('close-lightbox').addEventListener('click', () => $('lightbox').close());
 $('lightbox').addEventListener('click', event => { if (event.target === $('lightbox')) $('lightbox').close(); });
+$('dimensions-link').addEventListener('click', () => document.querySelector('[data-filter="plan"]').click());
+initializeMeasurements().catch(error => { console.error(error); metrics.measurementError = String(error); $('furniture-select').options[0].textContent = '尺寸暂未载入，请刷新重试'; });
 initializeGallery().catch(error => { console.error(error); $('gallery-grid').textContent = '图集暂未载入，请打开完整设计图册。'; });
 try { initializeViewer(); } catch (error) {
   console.error(error); metrics.error = String(error);

@@ -1,0 +1,1696 @@
+{
+  "revision": "20261019_dimensions",
+  "units": "mm",
+  "note": "仅三处飘窗台面宽深为用户实测。家具为方案设计值；房屋实况不得由模型反推。bounds_m和plan_anchor_px仅用于高亮定位。",
+  "items": [
+    {
+      "id": "tv-left",
+      "code": "S01",
+      "name": "客厅 · 电视墙左塔柜",
+      "room": "客厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 800.0
+        },
+        {
+          "label": "深",
+          "value_mm": 402.5
+        },
+        {
+          "label": "高",
+          "value_mm": 2480.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 60 mm。上下封闭柜与中部开放格；18mm板材与4mm门缝。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        6.65,
+        7.0525,
+        1.94,
+        2.74,
+        0.06,
+        2.54
+      ],
+      "plan_anchor_px": [
+        1276,
+        1568
+      ],
+      "mesh_count": 16
+    },
+    {
+      "id": "tv-right",
+      "code": "S02",
+      "name": "客厅 · 电视墙右塔柜",
+      "room": "客厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 800.0
+        },
+        {
+          "label": "深",
+          "value_mm": 402.5
+        },
+        {
+          "label": "高",
+          "value_mm": 2480.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 60 mm。上下封闭柜与中部开放格；18mm板材与4mm门缝。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        6.65,
+        7.0525,
+        4.940001,
+        5.74,
+        0.06,
+        2.54
+      ],
+      "plan_anchor_px": [
+        1276,
+        1085
+      ],
+      "mesh_count": 16
+    },
+    {
+      "id": "tv-base",
+      "code": "S03",
+      "name": "客厅 · 电视墙中段抽屉",
+      "room": "客厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 2200.0
+        },
+        {
+          "label": "深",
+          "value_mm": 402.5
+        },
+        {
+          "label": "高",
+          "value_mm": 540.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 60 mm。三组抽屉；中央电视空腔不计入此柜体外包体积。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        6.65,
+        7.0525,
+        2.74,
+        4.94,
+        0.06,
+        0.6
+      ],
+      "plan_anchor_px": [
+        1276,
+        1327
+      ],
+      "mesh_count": 22
+    },
+    {
+      "id": "tv-upper",
+      "code": "S04",
+      "name": "客厅 · 电视墙上柜",
+      "room": "客厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 2200.0
+        },
+        {
+          "label": "深",
+          "value_mm": 402.5
+        },
+        {
+          "label": "高",
+          "value_mm": 340.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 2200 mm。上翻门概念立面；五金、墙体固定及开启角施工时复核。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        6.65,
+        7.0525,
+        2.74,
+        4.94,
+        2.2,
+        2.54
+      ],
+      "plan_anchor_px": [
+        1276,
+        1327
+      ],
+      "mesh_count": 11
+    },
+    {
+      "id": "master-window-wardrobe",
+      "code": "S05",
+      "name": "主卧A · 窗边齐平整墙衣柜",
+      "room": "主卧A",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 3150.0
+        },
+        {
+          "label": "深",
+          "value_mm": 670.0
+        },
+        {
+          "label": "高",
+          "value_mm": 2600.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。方案3.15m整墙衣柜与未实测的示意墙垛x2.80齐平，现场墙垛位置待测；完整深0.67m含双轨，柜身深0.645m、内部层板深0.58m。三格挂衣、一格叠放，四扇移门；替代原西侧挂衣柜及东侧浅柜，图上床侧留作主要进出及卫浴通道。第二扇门沿轨道滑开0.74m，门板、木框和拉手整体移动，不向床尾过道摆动。卫生间保持原模型尺寸、洁具和入口。以上柜体尺寸及净距均为方案值。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        2.8,
+        3.47,
+        2.62,
+        5.77,
+        0.04,
+        2.64
+      ],
+      "plan_anchor_px": [
+        678,
+        1270
+      ],
+      "mesh_count": 52
+    },
+    {
+      "id": "study-books",
+      "code": "S06",
+      "name": "书房 · 整墙书柜",
+      "room": "书房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 2980.0
+        },
+        {
+          "label": "深",
+          "value_mm": 570.0
+        },
+        {
+          "label": "高",
+          "value_mm": 2500.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。方案整墙书柜完整深0.57m，柜门最外侧与未实测的示意墙垛x3.57齐平，现场墙垛位置待测；下部封闭储物，上部层板和书籍前移。柜体尺寸均为方案值，不由飘窗台面实测宽深反推墙垛。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        3.0,
+        3.57,
+        7.02,
+        10.0,
+        0.04,
+        2.54
+      ],
+      "plan_anchor_px": [
+        702,
+        575
+      ],
+      "mesh_count": 156
+    },
+    {
+      "id": "study-drawers",
+      "code": "S07",
+      "name": "书房 · 桌下抽屉",
+      "room": "书房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 420.0
+        },
+        {
+          "label": "深",
+          "value_mm": 602.5
+        },
+        {
+          "label": "高",
+          "value_mm": 650.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 50 mm。1.68m东墙书桌北端抽屉朝西开启，南侧扣除桌腿后保留约1.095m宽膝部空间。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        5.3275,
+        5.93,
+        9.41,
+        9.83,
+        0.05,
+        0.7
+      ],
+      "plan_anchor_px": [
+        1080,
+        397
+      ],
+      "mesh_count": 20
+    },
+    {
+      "id": "entry-tall",
+      "code": "S08",
+      "name": "玄关 · 高鞋与杂物柜",
+      "room": "玄关",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 900.0
+        },
+        {
+          "label": "深",
+          "value_mm": 372.5
+        },
+        {
+          "label": "高",
+          "value_mm": 2500.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。移至厨房背后室内墙的图左段，门朝图上；高柜前约1.29m，门口不设柜体。上部存轻物，柜顶保留安装收口。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        13.070001,
+        13.97,
+        5.23,
+        5.6025,
+        0.04,
+        2.54
+      ],
+      "plan_anchor_px": [
+        2349,
+        1073
+      ],
+      "mesh_count": 21
+    },
+    {
+      "id": "entry-bench",
+      "code": "S09",
+      "name": "玄关 · 换鞋抽屉凳",
+      "room": "玄关",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 880.0
+        },
+        {
+          "label": "深",
+          "value_mm": 402.5
+        },
+        {
+          "label": "高",
+          "value_mm": 340.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。与高柜沿图下墙并排，坐垫顶高0.46m，抽屉朝图上；凳前约1.25m，坐人或拉抽屉时占用局部空间。凳上挂画可取下，保留原配电箱检修。 现场位置和安装收口待复尺。此处高度为柜体本身；坐垫顶离地方案为460 mm。",
+      "bounds_m": [
+        14.080001,
+        14.96,
+        5.235,
+        5.6375,
+        0.04,
+        0.46
+      ],
+      "plan_anchor_px": [
+        2510,
+        1070
+      ],
+      "mesh_count": 16
+    },
+    {
+      "id": "dining-buffet",
+      "code": "S10",
+      "name": "餐厅 · 浅餐边柜",
+      "room": "餐厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 2100.0
+        },
+        {
+          "label": "深",
+          "value_mm": 382.5
+        },
+        {
+          "label": "高",
+          "value_mm": 860.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。远离餐椅背后的图上墙；餐具、杯具及小家电收纳。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        10.63,
+        12.73,
+        6.477499,
+        6.86,
+        0.04,
+        0.9
+      ],
+      "plan_anchor_px": [
+        2053,
+        872
+      ],
+      "mesh_count": 29
+    },
+    {
+      "id": "hall-shallow",
+      "code": "S11",
+      "name": "走廊 · 浅抽屉收纳柜",
+      "room": "走廊",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 1800.0
+        },
+        {
+          "label": "深",
+          "value_mm": 322.5
+        },
+        {
+          "label": "高",
+          "value_mm": 780.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。用浅柜替代原条案，保留原水墨画与花器。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        8.75,
+        10.549999,
+        6.5175,
+        6.84,
+        0.04,
+        0.82
+      ],
+      "plan_anchor_px": [
+        1727,
+        870
+      ],
+      "mesh_count": 21
+    },
+    {
+      "id": "laundry-upper",
+      "code": "S12",
+      "name": "家政 · 洗衣台上柜",
+      "room": "家政",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 860.0
+        },
+        {
+          "label": "深",
+          "value_mm": 342.5
+        },
+        {
+          "label": "高",
+          "value_mm": 780.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 1750 mm。洗衣台上方轻物储藏，柜底1.75m；不改变地面通道。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        12.150001,
+        13.009999,
+        1.2675,
+        1.61,
+        1.75,
+        2.53
+      ],
+      "plan_anchor_px": [
+        2198,
+        1713
+      ],
+      "mesh_count": 11
+    },
+    {
+      "id": "mirror-left",
+      "code": "S13",
+      "name": "左卫 · 镜柜",
+      "room": "左卫",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 800.0
+        },
+        {
+          "label": "深",
+          "value_mm": 190.0
+        },
+        {
+          "label": "高",
+          "value_mm": 880.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 1080 mm。镜后浅收纳，不新增地面柜体；上下管线与防潮固定需深化。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        0.22,
+        0.41,
+        7.22,
+        8.02,
+        1.08,
+        1.96
+      ],
+      "plan_anchor_px": [
+        224,
+        719
+      ],
+      "mesh_count": 9
+    },
+    {
+      "id": "mirror-right",
+      "code": "S14",
+      "name": "右卫干区 · 镜柜",
+      "room": "右卫干区",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 900.0
+        },
+        {
+          "label": "深",
+          "value_mm": 210.0
+        },
+        {
+          "label": "高",
+          "value_mm": 880.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 1080 mm。镜后浅收纳，不新增地面柜体；上下管线与防潮固定需深化。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        7.44,
+        7.65,
+        7.15,
+        8.05,
+        1.08,
+        1.96
+      ],
+      "plan_anchor_px": [
+        1388,
+        722
+      ],
+      "mesh_count": 9
+    },
+    {
+      "id": "bed-master",
+      "code": "F01",
+      "name": "主卧 A · 床",
+      "room": "主卧 A",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "床垫宽",
+          "value_mm": 1350
+        },
+        {
+          "label": "床垫长",
+          "value_mm": 1900
+        }
+      ],
+      "note": "用户确认的床垫方案尺寸；床架、床头另占空间，成品规格待选定。",
+      "bounds_m": [
+        0.22,
+        2.2475,
+        2.97,
+        4.47,
+        0.028,
+        1.233
+      ],
+      "plan_anchor_px": [
+        372,
+        1346
+      ],
+      "mesh_count": 15
+    },
+    {
+      "id": "bed-secondary",
+      "code": "F02",
+      "name": "长辈卧室 B · 床",
+      "room": "长辈卧室 B",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "床垫宽",
+          "value_mm": 1500
+        },
+        {
+          "label": "床垫长",
+          "value_mm": 2000
+        }
+      ],
+      "note": "床垫方案尺寸；床架、床头另占空间，成品规格待选定。",
+      "bounds_m": [
+        4.24,
+        6.3675,
+        2.775,
+        4.425,
+        0.028,
+        1.233
+      ],
+      "plan_anchor_px": [
+        1027,
+        1365
+      ],
+      "mesh_count": 15
+    },
+    {
+      "id": "sofa",
+      "code": "F03",
+      "name": "客厅 · 三人沙发",
+      "room": "客厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 2700
+        },
+        {
+          "label": "深",
+          "value_mm": 900
+        }
+      ],
+      "note": "家具方案占地尺寸，成品规格待选定。",
+      "bounds_m": [
+        9.224309,
+        10.124368,
+        2.3,
+        5.0,
+        0.028,
+        1.059396
+      ],
+      "plan_anchor_px": [
+        1731,
+        1357
+      ],
+      "mesh_count": 32
+    },
+    {
+      "id": "armchair",
+      "code": "F04",
+      "name": "客厅 · 休闲扶手椅",
+      "room": "客厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 650
+        },
+        {
+          "label": "深",
+          "value_mm": 650
+        }
+      ],
+      "note": "家具方案占地尺寸，成品规格待选定。",
+      "bounds_m": [
+        7.782728,
+        8.517272,
+        4.727592,
+        5.461904,
+        0.028,
+        1.008742
+      ],
+      "plan_anchor_px": [
+        1485,
+        1125
+      ],
+      "mesh_count": 23
+    },
+    {
+      "id": "tea-table",
+      "code": "F05",
+      "name": "客厅 · 茶几",
+      "room": "客厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "长",
+          "value_mm": 1200
+        },
+        {
+          "label": "深",
+          "value_mm": 650
+        },
+        {
+          "label": "高",
+          "value_mm": 430
+        }
+      ],
+      "note": "尺寸为茶几自身设计值。",
+      "bounds_m": [
+        8.155,
+        8.804999,
+        2.98,
+        4.18,
+        0.028,
+        0.458
+      ],
+      "plan_anchor_px": [
+        1538,
+        1369
+      ],
+      "mesh_count": 10
+    },
+    {
+      "id": "side-table",
+      "code": "F06",
+      "name": "客厅 · 边几",
+      "room": "客厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 480
+        },
+        {
+          "label": "深",
+          "value_mm": 420
+        },
+        {
+          "label": "高",
+          "value_mm": 550
+        }
+      ],
+      "note": "方案设计值，订制或购买前需复核。",
+      "bounds_m": [
+        9.31,
+        9.79,
+        5.14,
+        5.56,
+        0.0025,
+        0.55
+      ],
+      "plan_anchor_px": [
+        1711,
+        1084
+      ],
+      "mesh_count": 5
+    },
+    {
+      "id": "dining-table",
+      "code": "F07",
+      "name": "餐厅 · 四人餐桌",
+      "room": "餐厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "长",
+          "value_mm": 1640
+        },
+        {
+          "label": "宽",
+          "value_mm": 860
+        },
+        {
+          "label": "高",
+          "value_mm": 770
+        }
+      ],
+      "note": "方案设计值，订制或购买前需复核。",
+      "bounds_m": [
+        11.23,
+        12.09,
+        2.66,
+        4.3,
+        0.0075,
+        0.77
+      ],
+      "plan_anchor_px": [
+        2050,
+        1385
+      ],
+      "mesh_count": 5
+    },
+    {
+      "id": "study-desk",
+      "code": "F08",
+      "name": "书房 · 书桌",
+      "room": "书房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "长",
+          "value_mm": 1680
+        },
+        {
+          "label": "深",
+          "value_mm": 640
+        },
+        {
+          "label": "高",
+          "value_mm": 750
+        }
+      ],
+      "note": "桌下抽屉柜单独标注。",
+      "bounds_m": [
+        5.32,
+        5.96,
+        8.15,
+        9.83,
+        0.0025,
+        0.75
+      ],
+      "plan_anchor_px": [
+        1081,
+        498
+      ],
+      "mesh_count": 3
+    },
+    {
+      "id": "study-chair",
+      "code": "F09",
+      "name": "书房 · 书椅",
+      "room": "书房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 500
+        },
+        {
+          "label": "深",
+          "value_mm": 550
+        }
+      ],
+      "note": "方案设计值，订制或购买前需复核。",
+      "bounds_m": [
+        4.920617,
+        5.470616,
+        8.599996,
+        9.100005,
+        0.028,
+        0.956698
+      ],
+      "plan_anchor_px": [
+        1010,
+        521
+      ],
+      "mesh_count": 13
+    },
+    {
+      "id": "secondary-wardrobe",
+      "code": "F10",
+      "name": "长辈卧室 B · 衣柜",
+      "room": "长辈卧室 B",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "柜体宽",
+          "value_mm": 1630
+        },
+        {
+          "label": "柜体深",
+          "value_mm": 480
+        },
+        {
+          "label": "柜体高",
+          "value_mm": 2420
+        }
+      ],
+      "note": "柜体输入尺寸；门板、拉手突出量另计。",
+      "bounds_m": [
+        4.705,
+        6.335,
+        5.1495,
+        5.67,
+        0.0,
+        2.42
+      ],
+      "plan_anchor_px": [
+        1062,
+        1074
+      ],
+      "mesh_count": 7
+    },
+    {
+      "id": "secondary-nightstand",
+      "code": "F11",
+      "name": "长辈卧室 B · 床边柜",
+      "room": "长辈卧室 B",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 420
+        },
+        {
+          "label": "深",
+          "value_mm": 330
+        },
+        {
+          "label": "高",
+          "value_mm": 500
+        }
+      ],
+      "note": "方案设计值，订制或购买前需复核。",
+      "bounds_m": [
+        5.85,
+        6.27,
+        4.635,
+        4.965,
+        0.0025,
+        0.5
+      ],
+      "plan_anchor_px": [
+        1149,
+        1172
+      ],
+      "mesh_count": 5
+    },
+    {
+      "id": "entry-mirror",
+      "code": "F12",
+      "name": "玄关 · 全身镜",
+      "room": "玄关",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "含框宽",
+          "value_mm": 700
+        },
+        {
+          "label": "含框高",
+          "value_mm": 1960
+        },
+        {
+          "label": "木框厚",
+          "value_mm": 40
+        }
+      ],
+      "note": "镜面净尺寸为640×1900 mm，均为方案选型值。",
+      "bounds_m": [
+        14.969,
+        15.015,
+        5.89,
+        6.59,
+        0.12,
+        2.08
+      ],
+      "plan_anchor_px": [
+        2586,
+        941
+      ],
+      "mesh_count": 2
+    },
+    {
+      "id": "tv",
+      "code": "F13",
+      "name": "客厅 · 65寸电视",
+      "room": "客厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "机身宽",
+          "value_mm": 1485
+        },
+        {
+          "label": "机身高",
+          "value_mm": 855
+        },
+        {
+          "label": "机身厚",
+          "value_mm": 40
+        }
+      ],
+      "note": "65英寸为用户要求；机身尺寸为设计占位，须按最终品牌型号复核，不是厂家规格。",
+      "bounds_m": [
+        6.957,
+        7.003,
+        3.0975,
+        4.5825,
+        0.9525,
+        1.8075
+      ],
+      "plan_anchor_px": [
+        1297,
+        1327
+      ],
+      "mesh_count": 2
+    },
+    {
+      "id": "kitchen-east-base",
+      "code": "F14",
+      "name": "厨房 · 东墙地柜",
+      "room": "厨房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "柜体长",
+          "value_mm": 3340
+        },
+        {
+          "label": "柜体深",
+          "value_mm": 620
+        },
+        {
+          "label": "柜体高",
+          "value_mm": 840
+        }
+      ],
+      "note": "柜体输入尺寸；门板、拉手另计，台面单独标注。",
+      "bounds_m": [
+        14.3595,
+        15.02,
+        1.36,
+        4.7,
+        0.0,
+        0.84
+      ],
+      "plan_anchor_px": [
+        2538,
+        1457
+      ],
+      "mesh_count": 15
+    },
+    {
+      "id": "kitchen-east-top",
+      "code": "F15",
+      "name": "厨房 · 东墙台面",
+      "room": "厨房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "长",
+          "value_mm": 3360
+        },
+        {
+          "label": "深",
+          "value_mm": 660
+        },
+        {
+          "label": "厚",
+          "value_mm": 70
+        }
+      ],
+      "note": "台面顶离地方案为915 mm。",
+      "bounds_m": [
+        14.37,
+        15.03,
+        1.35,
+        4.71,
+        0.845,
+        0.915
+      ],
+      "plan_anchor_px": [
+        2539,
+        1457
+      ],
+      "mesh_count": 1
+    },
+    {
+      "id": "kitchen-south-base",
+      "code": "F16",
+      "name": "厨房 · 南墙地柜",
+      "room": "厨房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "柜体宽",
+          "value_mm": 1430
+        },
+        {
+          "label": "柜体深",
+          "value_mm": 620
+        },
+        {
+          "label": "柜体高",
+          "value_mm": 840
+        }
+      ],
+      "note": "柜体输入尺寸；门板、拉手另计。",
+      "bounds_m": [
+        13.055,
+        14.485001,
+        1.2195,
+        1.88,
+        0.0,
+        0.84
+      ],
+      "plan_anchor_px": [
+        2390,
+        1695
+      ],
+      "mesh_count": 7
+    },
+    {
+      "id": "kitchen-south-top",
+      "code": "F17",
+      "name": "厨房 · 南墙台面",
+      "room": "厨房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "长",
+          "value_mm": 1450
+        },
+        {
+          "label": "深",
+          "value_mm": 650
+        },
+        {
+          "label": "厚",
+          "value_mm": 70
+        }
+      ],
+      "note": "台面顶离地方案为915 mm。",
+      "bounds_m": [
+        13.054999,
+        14.505,
+        1.245,
+        1.895,
+        0.845,
+        0.915
+      ],
+      "plan_anchor_px": [
+        2391,
+        1692
+      ],
+      "mesh_count": 1
+    },
+    {
+      "id": "kitchen-upper",
+      "code": "F18",
+      "name": "厨房 · 东墙吊柜",
+      "room": "厨房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "柜体长",
+          "value_mm": 2630
+        },
+        {
+          "label": "柜体深",
+          "value_mm": 450
+        },
+        {
+          "label": "柜体高",
+          "value_mm": 690
+        }
+      ],
+      "note": "柜体输入尺寸，拉手另计。",
+      "bounds_m": [
+        14.552,
+        15.025001,
+        1.705,
+        4.335,
+        1.705,
+        2.395
+      ],
+      "plan_anchor_px": [
+        2554,
+        1459
+      ],
+      "mesh_count": 11
+    },
+    {
+      "id": "fridge-cabinet",
+      "code": "F19",
+      "name": "厨房 · 冰箱高柜",
+      "room": "厨房",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "柜体宽",
+          "value_mm": 760
+        },
+        {
+          "label": "柜体深",
+          "value_mm": 730
+        },
+        {
+          "label": "柜体高",
+          "value_mm": 2420
+        }
+      ],
+      "note": "高柜设计尺寸；冰箱为示意，实际机身、开门和散热按选定产品复核。",
+      "bounds_m": [
+        13.08,
+        13.84,
+        4.1515,
+        4.935,
+        0.0,
+        2.42
+      ],
+      "plan_anchor_px": [
+        2340,
+        1214
+      ],
+      "mesh_count": 7
+    },
+    {
+      "id": "laundry-base",
+      "code": "F20",
+      "name": "家政 · 洗衣柜",
+      "room": "家政",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "柜体宽",
+          "value_mm": 790
+        },
+        {
+          "label": "柜体深",
+          "value_mm": 660
+        },
+        {
+          "label": "柜体高",
+          "value_mm": 880
+        }
+      ],
+      "note": "柜体设计尺寸；洗衣机为示意，产品尺寸待选型。",
+      "bounds_m": [
+        12.184999,
+        12.975,
+        0.8695,
+        1.57,
+        0.0,
+        0.88
+      ],
+      "plan_anchor_px": [
+        2198,
+        1748
+      ],
+      "mesh_count": 6
+    },
+    {
+      "id": "laundry-top",
+      "code": "F21",
+      "name": "家政 · 工作台",
+      "room": "家政",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 860
+        },
+        {
+          "label": "深",
+          "value_mm": 700
+        },
+        {
+          "label": "厚",
+          "value_mm": 55
+        }
+      ],
+      "note": "台面顶离地方案为947.5 mm。",
+      "bounds_m": [
+        12.15,
+        13.01,
+        0.88,
+        1.58,
+        0.8925,
+        0.9475
+      ],
+      "plan_anchor_px": [
+        2198,
+        1747
+      ],
+      "mesh_count": 1
+    },
+    {
+      "id": "laundry-slim",
+      "code": "F22",
+      "name": "晾晒区 · 薄储物柜",
+      "room": "家政",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "柜体宽",
+          "value_mm": 450
+        },
+        {
+          "label": "柜体深",
+          "value_mm": 620
+        },
+        {
+          "label": "柜体高",
+          "value_mm": 2150
+        }
+      ],
+      "note": "柜体输入尺寸；门板、拉手另计。",
+      "bounds_m": [
+        14.4845,
+        14.975,
+        0.35,
+        0.97,
+        0.0,
+        2.15
+      ],
+      "plan_anchor_px": [
+        2544,
+        1839
+      ],
+      "mesh_count": 3
+    },
+    {
+      "id": "vanity-left",
+      "code": "F23",
+      "name": "左卫 · 台盆柜",
+      "room": "左卫",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "柜体宽",
+          "value_mm": 800
+        },
+        {
+          "label": "柜体深",
+          "value_mm": 530
+        },
+        {
+          "label": "柜体高",
+          "value_mm": 780
+        }
+      ],
+      "note": "柜体输入尺寸；洗手盆单独标注。",
+      "bounds_m": [
+        0.1945,
+        0.765,
+        7.22,
+        8.02,
+        0.0,
+        0.78
+      ],
+      "plan_anchor_px": [
+        251,
+        719
+      ],
+      "mesh_count": 5
+    },
+    {
+      "id": "basin-left",
+      "code": "F24",
+      "name": "左卫 · 洗手盆",
+      "room": "左卫",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 850
+        },
+        {
+          "label": "深",
+          "value_mm": 560
+        },
+        {
+          "label": "高",
+          "value_mm": 120
+        }
+      ],
+      "note": "洗手盆设计占位，成品规格待选型。",
+      "bounds_m": [
+        0.22,
+        0.78,
+        7.195,
+        8.045,
+        0.78,
+        0.9
+      ],
+      "plan_anchor_px": [
+        254,
+        719
+      ],
+      "mesh_count": 1
+    },
+    {
+      "id": "vanity-right",
+      "code": "F25",
+      "name": "右卫干区 · 台盆柜",
+      "room": "右卫干区",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "柜体宽",
+          "value_mm": 910
+        },
+        {
+          "label": "柜体深",
+          "value_mm": 550
+        },
+        {
+          "label": "柜体高",
+          "value_mm": 780
+        }
+      ],
+      "note": "柜体输入尺寸；洗手盆单独标注。",
+      "bounds_m": [
+        7.0445,
+        7.635,
+        7.145,
+        8.055,
+        0.0,
+        0.78
+      ],
+      "plan_anchor_px": [
+        1355,
+        722
+      ],
+      "mesh_count": 5
+    },
+    {
+      "id": "basin-right",
+      "code": "F26",
+      "name": "右卫干区 · 洗手盆",
+      "room": "右卫干区",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 940
+        },
+        {
+          "label": "深",
+          "value_mm": 570
+        },
+        {
+          "label": "高",
+          "value_mm": 120
+        }
+      ],
+      "note": "洗手盆设计占位，成品规格待选型。",
+      "bounds_m": [
+        7.075,
+        7.645,
+        7.13,
+        8.07,
+        0.78,
+        0.9
+      ],
+      "plan_anchor_px": [
+        1358,
+        722
+      ],
+      "mesh_count": 1
+    },
+    {
+      "id": "dining-chair-1",
+      "code": "F27",
+      "name": "餐厅 · 餐椅 1",
+      "room": "餐厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 500
+        },
+        {
+          "label": "深",
+          "value_mm": 550
+        }
+      ],
+      "note": "家具方案占地尺寸。",
+      "bounds_m": [
+        10.623117,
+        11.173117,
+        2.749995,
+        3.250005,
+        0.028,
+        0.956698
+      ],
+      "plan_anchor_px": [
+        1928,
+        1462
+      ],
+      "mesh_count": 13
+    },
+    {
+      "id": "dining-chair-2",
+      "code": "F28",
+      "name": "餐厅 · 餐椅 2",
+      "room": "餐厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 500
+        },
+        {
+          "label": "深",
+          "value_mm": 550
+        }
+      ],
+      "note": "家具方案占地尺寸。",
+      "bounds_m": [
+        10.623117,
+        11.173117,
+        3.719995,
+        4.220005,
+        0.028,
+        0.956698
+      ],
+      "plan_anchor_px": [
+        1928,
+        1306
+      ],
+      "mesh_count": 13
+    },
+    {
+      "id": "dining-chair-3",
+      "code": "F29",
+      "name": "餐厅 · 餐椅 3",
+      "room": "餐厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 500
+        },
+        {
+          "label": "深",
+          "value_mm": 550
+        }
+      ],
+      "note": "家具方案占地尺寸。",
+      "bounds_m": [
+        12.146884,
+        12.696883,
+        2.749995,
+        3.250005,
+        0.028,
+        0.956698
+      ],
+      "plan_anchor_px": [
+        2173,
+        1462
+      ],
+      "mesh_count": 13
+    },
+    {
+      "id": "dining-chair-4",
+      "code": "F30",
+      "name": "餐厅 · 餐椅 4",
+      "room": "餐厅",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 500
+        },
+        {
+          "label": "深",
+          "value_mm": 550
+        }
+      ],
+      "note": "家具方案占地尺寸。",
+      "bounds_m": [
+        12.146884,
+        12.696883,
+        3.719995,
+        4.220005,
+        0.028,
+        0.956698
+      ],
+      "plan_anchor_px": [
+        2173,
+        1306
+      ],
+      "mesh_count": 13
+    },
+    {
+      "id": "bay-master",
+      "code": "M01",
+      "name": "主卧 A · 飘窗台面",
+      "room": "主卧 A",
+      "source": "measured",
+      "source_label": "用户实测",
+      "dimensions": [
+        {
+          "label": "台面净宽",
+          "value_mm": 2500
+        },
+        {
+          "label": "台面净深",
+          "value_mm": 850
+        },
+        {
+          "label": "台面离地高度",
+          "value_mm": null,
+          "status": "待人工测量"
+        },
+        {
+          "label": "窗洞净宽",
+          "value_mm": null,
+          "status": "待人工测量"
+        },
+        {
+          "label": "两侧墙垛位置",
+          "value_mm": null,
+          "status": "待人工测量"
+        }
+      ],
+      "note": "净宽×净深由用户现场测量并确认，原单位厘米。只更新台面宽深；台面高度、窗洞和墙垛位置待人工测量，模型中的定位与坐垫为方案示意，不能反推建筑尺寸。",
+      "bounds_m": [
+        0.25,
+        2.75,
+        1.75,
+        2.6,
+        0.0,
+        0.77
+      ],
+      "plan_anchor_px": [
+        415,
+        1595
+      ],
+      "mesh_count": 3
+    },
+    {
+      "id": "bay-study",
+      "code": "M02",
+      "name": "书房 · 飘窗台面",
+      "room": "书房",
+      "source": "measured",
+      "source_label": "用户实测",
+      "dimensions": [
+        {
+          "label": "台面净宽",
+          "value_mm": 1860
+        },
+        {
+          "label": "台面净深",
+          "value_mm": 870
+        },
+        {
+          "label": "台面离地高度",
+          "value_mm": null,
+          "status": "待人工测量"
+        },
+        {
+          "label": "窗洞净宽",
+          "value_mm": null,
+          "status": "待人工测量"
+        },
+        {
+          "label": "两侧墙垛位置",
+          "value_mm": null,
+          "status": "待人工测量"
+        }
+      ],
+      "note": "净宽×净深由用户现场测量并确认，原单位厘米。只更新台面宽深；台面高度、窗洞和墙垛位置待人工测量，模型中的定位与坐垫为方案示意，不能反推建筑尺寸。",
+      "bounds_m": [
+        3.855,
+        5.715,
+        10.049999,
+        10.92,
+        0.0,
+        0.77
+      ],
+      "plan_anchor_px": [
+        944,
+        257
+      ],
+      "mesh_count": 3
+    },
+    {
+      "id": "bay-secondary",
+      "code": "M03",
+      "name": "长辈卧室 B · 飘窗台面",
+      "room": "长辈卧室 B",
+      "source": "measured",
+      "source_label": "用户实测",
+      "dimensions": [
+        {
+          "label": "台面净宽",
+          "value_mm": 1750
+        },
+        {
+          "label": "台面净深",
+          "value_mm": 820
+        },
+        {
+          "label": "台面离地高度",
+          "value_mm": null,
+          "status": "待人工测量"
+        },
+        {
+          "label": "窗洞净宽",
+          "value_mm": null,
+          "status": "待人工测量"
+        },
+        {
+          "label": "两侧墙垛位置",
+          "value_mm": null,
+          "status": "待人工测量"
+        }
+      ],
+      "note": "净宽×净深由用户现场测量并确认，原单位厘米。只更新台面宽深；台面高度、窗洞和墙垛位置待人工测量，模型中的定位与坐垫为方案示意，不能反推建筑尺寸。",
+      "bounds_m": [
+        4.62,
+        6.37,
+        1.78,
+        2.6,
+        0.0,
+        0.77
+      ],
+      "plan_anchor_px": [
+        1058,
+        1592
+      ],
+      "mesh_count": 3
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "revision": "20261019_dimensions",
+  "revision": "20261019_wall_composition",
   "units": "mm",
   "note": "仅三处飘窗台面宽深为用户实测。家具为方案设计值；房屋实况不得由模型反推。bounds_m和plan_anchor_px仅用于高亮定位。",
   "items": [
@@ -184,8 +184,44 @@
       "mesh_count": 52
     },
     {
-      "id": "study-books",
+      "id": "master-head-wardrobe",
       "code": "S06",
+      "name": "主卧A · 床头侧滑门衣柜",
+      "room": "主卧A",
+      "source": "design",
+      "source_label": "方案设计尺寸（非实测）",
+      "dimensions": [
+        {
+          "label": "宽",
+          "value_mm": 1800.0
+        },
+        {
+          "label": "深",
+          "value_mm": 625.0
+        },
+        {
+          "label": "高",
+          "value_mm": 2500.0
+        }
+      ],
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。床头西墙靠卫生间的空段增加1.80m衣柜，完整深0.625m含双轨、柜体高2.50m；左仓挂衣、右仓叠放，两扇滑门不占外摆空间。床头靠左墙及1.35×1.90m床垫保持不变。柜顶离地2.54m，按现有模型避开吊顶；柜体与墙、开关、门及吊顶实际位置均需复尺。 现场位置和安装收口待复尺。",
+      "bounds_m": [
+        0.21,
+        0.835,
+        4.84,
+        6.639999,
+        0.04,
+        2.54
+      ],
+      "plan_anchor_px": [
+        258,
+        1021
+      ],
+      "mesh_count": 30
+    },
+    {
+      "id": "study-books",
+      "code": "S07",
       "name": "书房 · 整墙书柜",
       "room": "书房",
       "source": "design",
@@ -221,7 +257,7 @@
     },
     {
       "id": "study-drawers",
-      "code": "S07",
+      "code": "S08",
       "name": "书房 · 桌下抽屉",
       "room": "书房",
       "source": "design",
@@ -257,7 +293,7 @@
     },
     {
       "id": "entry-tall",
-      "code": "S08",
+      "code": "S09",
       "name": "玄关 · 高鞋与杂物柜",
       "room": "玄关",
       "source": "design",
@@ -293,7 +329,7 @@
     },
     {
       "id": "entry-bench",
-      "code": "S09",
+      "code": "S10",
       "name": "玄关 · 换鞋抽屉凳",
       "room": "玄关",
       "source": "design",
@@ -328,80 +364,88 @@
       "mesh_count": 16
     },
     {
-      "id": "dining-buffet",
-      "code": "S10",
-      "name": "餐厅 · 浅餐边柜",
-      "room": "餐厅",
+      "id": "living-wall-base",
+      "code": "S11",
+      "name": "客厅 · 整墙收纳矮柜",
+      "room": "客厅",
       "source": "design",
       "source_label": "方案设计尺寸（非实测）",
       "dimensions": [
         {
-          "label": "宽",
-          "value_mm": 2100.0
+          "label": "柜体宽",
+          "value_mm": 4800.0
         },
         {
-          "label": "深",
-          "value_mm": 382.5
+          "label": "柜体深",
+          "value_mm": 422.5
         },
         {
-          "label": "高",
-          "value_mm": 860.0
+          "label": "柜体高",
+          "value_mm": 800.0
+        },
+        {
+          "label": "台面深",
+          "value_mm": 440
+        },
+        {
+          "label": "台面顶离地",
+          "value_mm": 880
         }
       ],
-      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。远离餐椅背后的图上墙；餐具、杯具及小家电收纳。 现场位置和安装收口待复尺。",
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。原两只高低不一的矮柜合并为4.80m连续矮柜，抽屉与封闭收纳分区；所有台面统一离地0.88m。此处外包尺寸为柜体本身（高0.80m、柜底0.04m），另有4cm厚、44cm深胡桃木台面。右端分缝与上柜对齐，柜门暖米白、边框胡桃木，完整墙面配山水画与少量展示。均为方案值。 现场位置和安装收口待复尺。",
       "bounds_m": [
-        10.63,
-        12.73,
-        6.477499,
-        6.86,
+        8.049999,
+        12.85,
+        6.44,
+        6.88,
         0.04,
-        0.9
+        0.88
       ],
       "plan_anchor_px": [
-        2053,
-        872
+        1855,
+        873
       ],
-      "mesh_count": 29
+      "mesh_count": 86
     },
     {
-      "id": "hall-shallow",
-      "code": "S11",
-      "name": "走廊 · 浅抽屉收纳柜",
-      "room": "走廊",
+      "id": "living-wall-upper",
+      "code": "S12",
+      "name": "客厅 · 整墙收纳右上柜",
+      "room": "客厅",
       "source": "design",
       "source_label": "方案设计尺寸（非实测）",
       "dimensions": [
         {
           "label": "宽",
-          "value_mm": 1800.0
+          "value_mm": 800.0
         },
         {
           "label": "深",
-          "value_mm": 322.5
+          "value_mm": 422.5
         },
         {
           "label": "高",
-          "value_mm": 780.0
+          "value_mm": 1640.0
         }
       ],
-      "note": "柜体外包设计值，含门板；柜底离地按方案为 40 mm。用浅柜替代原条案，保留原水墨画与花器。 现场位置和安装收口待复尺。",
+      "note": "柜体外包设计值，含门板；柜底离地按方案为 900 mm。右侧0.80m宽上柜与连续台面组合，展示格仅留一层暖光青瓷与书，图上部封闭储物；顶离地2.54m。上柜底离台面2cm形成阴影缝，现场安装固定须结合墙体复核。柜体尺寸为方案值。 现场位置和安装收口待复尺。",
       "bounds_m": [
-        8.75,
-        10.549999,
-        6.5175,
-        6.84,
-        0.04,
-        0.82
+        12.05,
+        12.849999,
+        6.4475,
+        6.87,
+        0.9,
+        2.54
       ],
       "plan_anchor_px": [
-        1727,
-        870
+        2177,
+        873
       ],
-      "mesh_count": 21
+      "mesh_count": 15
     },
     {
       "id": "laundry-upper",
-      "code": "S12",
+      "code": "S13",
       "name": "家政 · 洗衣台上柜",
       "room": "家政",
       "source": "design",
@@ -437,7 +481,7 @@
     },
     {
       "id": "mirror-left",
-      "code": "S13",
+      "code": "S14",
       "name": "左卫 · 镜柜",
       "room": "左卫",
       "source": "design",
@@ -473,7 +517,7 @@
     },
     {
       "id": "mirror-right",
-      "code": "S14",
+      "code": "S15",
       "name": "右卫干区 · 镜柜",
       "room": "右卫干区",
       "source": "design",

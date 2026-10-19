@@ -96,6 +96,22 @@
     "height": 1440
   },
   {
+    "id": "living-wall",
+    "title": "客餐厅 · 连续收纳与山水背景",
+    "src": "assets/living-wall.webp",
+    "thumb": "assets/thumbs/living-wall.webp",
+    "width": 1800,
+    "height": 1125
+  },
+  {
+    "id": "master-extra",
+    "title": "主卧 A · 床头侧补充衣柜",
+    "src": "assets/master-extra.webp",
+    "thumb": "assets/thumbs/master-extra.webp",
+    "width": 1800,
+    "height": 1125
+  },
+  {
     "id": "plan-labeled",
     "title": "房间标注平面",
     "src": "assets/plan-labeled.webp",

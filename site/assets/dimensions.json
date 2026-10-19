@@ -1,5 +1,5 @@
 {
-  "revision": "20261019_open_entry",
+  "revision": "20261019_study_wall_door",
   "units": "mm",
   "note": "仅三处飘窗台面宽深为用户实测。家具为方案设计值；房屋实况不得由模型反推。bounds_m和plan_anchor_px仅用于高亮定位。",
   "items": [

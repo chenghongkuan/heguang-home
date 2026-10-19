@@ -18,6 +18,7 @@ const views = {
   'bedroom-b': { title: '长辈卧室 B', description: '图中下 · 1.50 m 宽床 · 蜜棕橡木地板', position: [3.83, 5.15, 1.53], target: [5.28, 3.60, 1.15] },
   study: { title: '书房', description: '南侧走廊门向内开 · 右侧书桌 · 左侧书柜 · 窗边阅读', position: [3.67, 7.48, 1.58], target: [5.05, 9.32, 1.12] },
   dining: { title: '餐厨空间', description: '木框玻璃移门，连接烟火气与相聚的时光。', position: [10.70, 2.15, 1.58], target: [14.04, 3.66, 1.28] },
+  entry: { title: '玄关', description: '换鞋收纳 · 全身镜 · 门后留空', position: [13.12, 6.80, 1.45], target: [14.12, 5.65, 1.30] },
   wardrobe: { title: '主卧窗边齐平衣柜', description: '卫生间保持原尺寸 · 双轨滑门横向开启 · 床尾约 0.55 m', position: [0.72, 5.65, 1.58], target: [2.90, 4.08, 1.28] },
   'study-storage': { title: '书房整墙书柜', description: '2.98 m 书柜与窗边墙垛齐平 · 书房门向内开启', position: [5.45, 7.95, 1.58], target: [3.70, 9.65, 1.25] },
   'river-view': { title: '二楼临河窗景', description: '越过树冠与河岸花园，看与住宅平行的河道。', position: [10.25, 1.38, 1.62], target: [9.65, -12.5, -2.8] },
@@ -135,7 +136,7 @@ function selectView(id, animate = true) {
   controls.zoomSpeed = isOverview ? 0.8 : 0.45;
   camera.up.set(...(isPlan ? [0, 0, -1] : [0, 1, 0]));
   camera.zoom = 1;
-  perspective.fov = isOverview ? 45 : 73;
+  perspective.fov = isOverview ? 45 : id === 'entry' ? 85 : 73;
   camera.updateProjectionMatrix();
   $('cutaway').checked = view.cut !== undefined;
   if (view.cut !== undefined) $('cut-height').value = view.cut;
@@ -224,7 +225,7 @@ function initializeViewer() {
   resize(); selectView('overview', false); addLabels();
   new ResizeObserver(resize).observe(viewport);
   requestAnimationFrame(loop);
-  new GLTFLoader().load('./assets/home.glb?v=20261019-master-west-sliding', gltf => {
+  new GLTFLoader().load('./assets/home.glb?v=20261019-entry-reset', gltf => {
     model = gltf.scene;
     const wallPattern = /外墙|内墙|墙体|门|窗|玻璃|垭口|踢脚|吊顶|顶角|线脚|灯带|画|水墨|墨竹|电视墙|吊灯|灯具木圈|灯底漫射/;
     const materialCache = new Map();
@@ -336,18 +337,18 @@ $('capture').addEventListener('click', () => {
 });
 
 async function initializeGallery() {
-  const response = await fetch('./assets/gallery.json?v=20261019-master-west-sliding');
+  const response = await fetch('./assets/gallery.json?v=20261019-entry-reset');
   if (!response.ok) throw new Error('Gallery load failed');
   const images = await response.json();
-  const order = ['tv', 'wardrobe', 'study-storage', 'study', 'living', 'dining', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
+  const order = ['tv', 'wardrobe', 'study-storage', 'study', 'living', 'dining', 'entry', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
   images.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
   for (const item of images) {
     const figure = document.createElement('figure'); figure.className = 'gallery-card';
-    figure.dataset.category = ['living', 'tv', 'dining'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'wardrobe'].includes(item.id) ? 'bedroom' : ['study', 'study-storage'].includes(item.id) ? 'study' : item.id === 'river-view' ? 'river' : 'plan';
+    figure.dataset.category = ['living', 'tv', 'dining', 'entry'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'wardrobe'].includes(item.id) ? 'bedroom' : ['study', 'study-storage'].includes(item.id) ? 'study' : item.id === 'river-view' ? 'river' : 'plan';
     const button = document.createElement('button'); button.setAttribute('aria-label', '查看' + item.title);
-    const image = new Image(); image.src = item.thumb + '?v=20261019-master-west-sliding'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
+    const image = new Image(); image.src = item.thumb + '?v=20261019-entry-reset'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
     button.append(image);
-    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261019-master-west-sliding'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox').showModal(); });
+    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261019-entry-reset'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox').showModal(); });
     const caption = document.createElement('figcaption');
     const name = document.createElement('span'); name.textContent = item.title;
     const arrow = document.createElement('span'); arrow.textContent = '↗'; caption.append(name, arrow);

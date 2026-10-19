@@ -33,7 +33,7 @@
   },
   {
     "id": "bedroom-a",
-    "title": "主卧 A · 卧室空地衣柜墙",
+    "title": "主卧 A · 矮墙床头与整墙衣柜",
     "src": "assets/bedroom-a.webp",
     "thumb": "assets/thumbs/bedroom-a.webp",
     "width": 1800,
@@ -65,7 +65,7 @@
   },
   {
     "id": "wardrobe",
-    "title": "主卧 A · 空地整墙衣柜",
+    "title": "主卧 A · 与窗垛齐平的衣柜",
     "src": "assets/wardrobe.webp",
     "thumb": "assets/thumbs/wardrobe.webp",
     "width": 1800,
@@ -73,7 +73,7 @@
   },
   {
     "id": "study-storage",
-    "title": "书房整墙书柜",
+    "title": "书房 · 与窗垛齐平的书柜",
     "src": "assets/study-storage.webp",
     "thumb": "assets/thumbs/study-storage.webp",
     "width": 1800,

@@ -33,7 +33,7 @@
   },
   {
     "id": "bedroom-a",
-    "title": "主卧 A · 矮墙床头与整墙衣柜",
+    "title": "主卧 A · 1.35米靠墙床",
     "src": "assets/bedroom-a.webp",
     "thumb": "assets/thumbs/bedroom-a.webp",
     "width": 1800,
@@ -65,7 +65,7 @@
   },
   {
     "id": "wardrobe",
-    "title": "主卧 A · 与窗垛齐平的衣柜",
+    "title": "主卧 A · 沿柜宽滑开的衣柜",
     "src": "assets/wardrobe.webp",
     "thumb": "assets/thumbs/wardrobe.webp",
     "width": 1800,

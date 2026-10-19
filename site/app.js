@@ -20,7 +20,8 @@ const views = {
   dining: { title: '餐厨空间', description: '木框玻璃移门，连接烟火气与相聚的时光。', position: [10.70, 2.15, 1.58], target: [14.04, 3.66, 1.28] },
   entry: { title: '玄关', description: '换鞋收纳 · 全身镜 · 门后留空', position: [13.12, 6.80, 1.45], target: [14.12, 5.65, 1.30] },
   wardrobe: { title: '主卧窗边齐平衣柜', description: '双轨滑门 · 方案床尾局部净距约 0.55 m，现场待测', position: [1.15, 5.95, 1.58], target: [2.90, 4.08, 1.28] },
-  'living-wall': { title: '客餐厅整墙收纳', description: '方案：4.80 m 连续台面 · 水墨留白 · 茶器展示与封闭收纳', position: [10.45, 2.70, 1.65], target: [10.45, 6.60, 1.40] },
+  'living-wall': { title: '客餐厅圆角收纳', description: '方案：3.80 m 矮柜 · 三层圆角展示架 · 靠门侧开放', position: [9.95, 2.70, 1.65], target: [9.95, 6.65, 1.40] },
+  'entry-sightline': { title: '入户看客餐厅', description: '柜体缩短 1.00 m · 取消封闭上柜 · 靠门端留空', position: [14.43, 6.72, 1.55], target: [10.10, 5.88, 1.35] },
   'master-extra': { title: '主卧床头侧衣柜', description: '方案：1.80 m 双轨移门衣柜 · 利用床头墙上侧空段 · 尺寸待现场复核', position: [2.60, 5.70, 1.45], target: [.55, 5.40, 1.30] },
   'study-storage': { title: '书房整墙书柜', description: '方案：2.98 m 书柜 · 柜面齐平 · 书房门向内开启', position: [5.45, 7.95, 1.58], target: [3.70, 9.65, 1.25] },
   'river-view': { title: '二楼临河窗景', description: '越过树冠与河岸花园，看与住宅平行的河道。', position: [10.25, 1.38, 1.62], target: [9.65, -12.5, -2.8] },
@@ -83,7 +84,7 @@ function selectMeasurement(id) {
   markDirty();
 }
 async function initializeMeasurements() {
-  const response = await fetch('./assets/dimensions.json?v=20261019-wall-composition');
+  const response = await fetch('./assets/dimensions.json?v=20261019-open-entry');
   if (!response.ok) throw new Error('Dimensions load failed');
   const data = await response.json();
   for (const item of data.items) {
@@ -128,8 +129,8 @@ function overviewPosition() {
   return b(views.overview.position).sub(target).normalize().multiplyScalar(distance).add(target);
 }
 function perspectiveFov(id) {
-  const horizontal = id === 'master-extra' ? 90 : id === 'living-wall' ? 74 : 0;
-  if (horizontal) return Math.max(id === 'master-extra' ? 90 : 73,
+  const horizontal = id === 'master-extra' ? 90 : id === 'entry-sightline' ? 80 : id === 'living-wall' ? 74 : 0;
+  if (horizontal) return Math.max(id === 'master-extra' ? 90 : id === 'entry-sightline' ? 85 : 73,
     THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(horizontal) / 2) / perspective.aspect)));
   return id === 'overview' ? 45 : id === 'entry' ? 85 : 73;
 }
@@ -295,7 +296,7 @@ function initializeViewer() {
   resize(); selectView('overview', false); addLabels();
   new ResizeObserver(resize).observe(viewport);
   requestAnimationFrame(loop);
-  new GLTFLoader().load('./assets/home.glb?v=20261019-wall-composition', gltf => {
+  new GLTFLoader().load('./assets/home.glb?v=20261019-open-entry', gltf => {
     model = gltf.scene;
     const wallPattern = /外墙|内墙|墙体|门|窗|玻璃|垭口|踢脚|吊顶|顶角|线脚|灯带|画|水墨|墨竹|电视墙|吊灯|灯具木圈|灯底漫射/;
     const materialCache = new Map();
@@ -427,20 +428,20 @@ $('capture').addEventListener('click', () => {
 });
 
 async function initializeGallery() {
-  const response = await fetch('./assets/gallery.json?v=20261019-wall-composition');
+  const response = await fetch('./assets/gallery.json?v=20261019-open-entry');
   if (!response.ok) throw new Error('Gallery load failed');
   const images = await response.json();
-  const order = ['living-wall', 'master-extra', 'dimensions', 'dimensions-common', 'dimensions-bedrooms', 'dimensions-service', 'tv', 'wardrobe', 'study-storage', 'study', 'living', 'dining', 'entry', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
+  const order = ['entry-sightline', 'living-wall', 'master-extra', 'dimensions', 'dimensions-common', 'dimensions-bedrooms', 'dimensions-service', 'tv', 'wardrobe', 'study-storage', 'study', 'living', 'dining', 'entry', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
   const rank = item => order.includes(item.id) ? order.indexOf(item.id) : item.id.includes('dimensions') ? 4.5 : order.length;
   images.sort((a, b) => rank(a) - rank(b));
   for (const item of images) {
     const figure = document.createElement('figure'); figure.className = 'gallery-card';
     figure.dataset.imageId = item.id;
-    figure.dataset.category = ['living', 'tv', 'dining', 'entry', 'living-wall'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'wardrobe', 'master-extra'].includes(item.id) ? 'bedroom' : ['study', 'study-storage'].includes(item.id) ? 'study' : item.id === 'river-view' ? 'river' : 'plan';
+    figure.dataset.category = ['living', 'tv', 'dining', 'entry', 'living-wall', 'entry-sightline'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'wardrobe', 'master-extra'].includes(item.id) ? 'bedroom' : ['study', 'study-storage'].includes(item.id) ? 'study' : item.id === 'river-view' ? 'river' : 'plan';
     const button = document.createElement('button'); button.setAttribute('aria-label', '查看' + item.title);
-    const image = new Image(); image.src = item.thumb + '?v=20261019-wall-composition'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
+    const image = new Image(); image.src = item.thumb + '?v=20261019-open-entry'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
     button.append(image);
-    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261019-wall-composition'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox-original').href = item.src + '?v=20261019-wall-composition'; $('lightbox').showModal(); });
+    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261019-open-entry'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox-original').href = item.src + '?v=20261019-open-entry'; $('lightbox').showModal(); });
     const caption = document.createElement('figcaption');
     const name = document.createElement('span'); name.textContent = item.title;
     const arrow = document.createElement('span'); arrow.textContent = '↗'; caption.append(name, arrow);

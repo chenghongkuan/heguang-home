@@ -97,7 +97,7 @@
   },
   {
     "id": "living-wall",
-    "title": "客餐厅 · 连续收纳与山水背景",
+    "title": "客餐厅 · 短柜与圆角开放展示",
     "src": "assets/living-wall.webp",
     "thumb": "assets/thumbs/living-wall.webp",
     "width": 1800,
@@ -108,6 +108,14 @@
     "title": "主卧 A · 床头侧补充衣柜",
     "src": "assets/master-extra.webp",
     "thumb": "assets/thumbs/master-extra.webp",
+    "width": 1800,
+    "height": 1125
+  },
+  {
+    "id": "entry-sightline",
+    "title": "从大门看客餐厅",
+    "src": "assets/entry-sightline.webp",
+    "thumb": "assets/thumbs/entry-sightline.webp",
     "width": 1800,
     "height": 1125
   },

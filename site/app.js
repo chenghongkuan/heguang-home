@@ -16,14 +16,14 @@ const views = {
   tv: { title: '整墙电视收纳', description: '65 寸电视嵌入柜墙，封闭储物与开放陈列结合。', position: [11.75, 5.75, 1.62], target: [7.25, 3.55, 1.28] },
   'bedroom-a': { title: '主卧 · 长辈 A', description: '方案：1.35 × 1.90 m 床 · 床尾局部净距约 0.55 m，现场待测', position: [2.65, 5.82, 1.57], target: [0.90, 3.55, 1.10] },
   'bedroom-b': { title: '长辈卧室 B', description: '方案：1.50 m 宽床 · 图中下 · 蜜棕橡木地板', position: [3.83, 5.15, 1.53], target: [5.28, 3.60, 1.15] },
-  study: { title: '书房', description: '南侧门靠东墙向内开 · 开后贴近墙 · 书桌与书柜保留', position: [3.67, 7.48, 1.58], target: [5.05, 9.32, 1.12] },
+  study: { title: '书房 · 飘窗书桌', description: '方案：向室内延伸 70 cm 留腿空 · 门靠东墙内开', position: [3.72, 7.42, 1.48], target: [4.80, 9.87, 0.91] },
   dining: { title: '餐厨空间', description: '封闭厨房 · 两侧实墙 · 居中内开门 · 餐桌转向留通路', position: [10.70, 2.15, 1.58], target: [14.04, 3.66, 1.28] },
   entry: { title: '玄关', description: '换鞋收纳 · 全身镜 · 门后留空', position: [13.12, 6.80, 1.45], target: [14.12, 5.65, 1.30] },
   wardrobe: { title: '主卧窗边齐平衣柜', description: '双轨滑门 · 方案床尾局部净距约 0.55 m，现场待测', position: [1.15, 5.95, 1.58], target: [2.90, 4.08, 1.28] },
   'living-wall': { title: '客餐厅圆角收纳', description: '方案：3.80 m 矮柜 · 三层圆角展示架 · 靠门侧开放', position: [9.95, 2.70, 1.65], target: [9.95, 6.65, 1.40] },
   'entry-sightline': { title: '入户看客餐厅', description: '柜体缩短 1.00 m · 取消封闭上柜 · 靠门端留空', position: [14.43, 6.72, 1.55], target: [10.10, 5.88, 1.35] },
   'master-extra': { title: '主卧床头侧衣柜', description: '方案：1.80 m 双轨移门衣柜 · 利用床头墙上侧空段 · 尺寸待现场复核', position: [2.60, 5.70, 1.45], target: [.55, 5.40, 1.30] },
-  'study-storage': { title: '书房整墙书柜', description: '方案：2.98 m 书柜 · 柜面齐平 · 门靠东墙向内开', position: [5.45, 7.95, 1.58], target: [3.70, 9.65, 1.25] },
+  'study-storage': { title: '书房 · 书柜与窗边桌', description: '方案：2.98 m 书柜 · 抽屉移到右侧 · 门靠东墙内开', position: [5.47, 7.74, 1.38], target: [4.18, 9.52, 1.05] },
   'river-view': { title: '二楼临河窗景', description: '越过树冠与河岸花园，看与住宅平行的河道。', position: [10.25, 1.38, 1.62], target: [9.65, -12.5, -2.8] },
 };
 let renderer, scene, controls, camera, perspective, orthographic, model, ground;
@@ -84,7 +84,7 @@ function selectMeasurement(id) {
   markDirty();
 }
 async function initializeMeasurements() {
-  const response = await fetch('./assets/dimensions.json?v=20261020-enclosed-kitchen');
+  const response = await fetch('./assets/dimensions.json?v=20261027-study-bay-desk');
   if (!response.ok) throw new Error('Dimensions load failed');
   const data = await response.json();
   for (const item of data.items) {
@@ -296,7 +296,7 @@ function initializeViewer() {
   resize(); selectView('overview', false); addLabels();
   new ResizeObserver(resize).observe(viewport);
   requestAnimationFrame(loop);
-  new GLTFLoader().load('./assets/home.glb?v=20261020-enclosed-kitchen', gltf => {
+  new GLTFLoader().load('./assets/home.glb?v=20261027-study-bay-desk', gltf => {
     model = gltf.scene;
     const wallPattern = /外墙|内墙|墙体|门|窗|玻璃|垭口|踢脚|吊顶|顶角|线脚|灯带|画|水墨|墨竹|电视墙|吊灯|灯具木圈|灯底漫射/;
     const materialCache = new Map();
@@ -428,20 +428,20 @@ $('capture').addEventListener('click', () => {
 });
 
 async function initializeGallery() {
-  const response = await fetch('./assets/gallery.json?v=20261020-enclosed-kitchen');
+  const response = await fetch('./assets/gallery.json?v=20261027-study-bay-desk');
   if (!response.ok) throw new Error('Gallery load failed');
   const images = await response.json();
-  const order = ['dining', 'entry-sightline', 'living-wall', 'master-extra', 'dimensions', 'dimensions-common', 'dimensions-bedrooms', 'dimensions-service', 'tv', 'wardrobe', 'study-storage', 'study', 'living', 'entry', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
+  const order = ['study', 'study-storage', 'study-legroom', 'dining', 'entry-sightline', 'living-wall', 'master-extra', 'dimensions', 'dimensions-common', 'dimensions-bedrooms', 'dimensions-service', 'tv', 'wardrobe', 'living', 'entry', 'bedroom-a', 'bedroom-b', 'river-view', 'overview', 'plan-labeled', 'plan'];
   const rank = item => order.includes(item.id) ? order.indexOf(item.id) : item.id.includes('dimensions') ? 4.5 : order.length;
   images.sort((a, b) => rank(a) - rank(b));
   for (const item of images) {
     const figure = document.createElement('figure'); figure.className = 'gallery-card';
     figure.dataset.imageId = item.id;
-    figure.dataset.category = ['living', 'tv', 'dining', 'entry', 'living-wall', 'entry-sightline'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'wardrobe', 'master-extra'].includes(item.id) ? 'bedroom' : ['study', 'study-storage'].includes(item.id) ? 'study' : item.id === 'river-view' ? 'river' : 'plan';
+    figure.dataset.category = ['living', 'tv', 'dining', 'entry', 'living-wall', 'entry-sightline'].includes(item.id) ? 'public' : ['bedroom-a', 'bedroom-b', 'wardrobe', 'master-extra'].includes(item.id) ? 'bedroom' : ['study', 'study-storage', 'study-legroom'].includes(item.id) ? 'study' : item.id === 'river-view' ? 'river' : 'plan';
     const button = document.createElement('button'); button.setAttribute('aria-label', '查看' + item.title);
-    const image = new Image(); image.src = item.thumb + '?v=20261020-enclosed-kitchen'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
+    const image = new Image(); image.src = item.thumb + '?v=20261027-study-bay-desk'; image.alt = item.title; image.width = 600; image.height = Math.round(600 * item.height / item.width); image.loading = 'lazy';
     button.append(image);
-    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261020-enclosed-kitchen'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox-original').href = item.src + '?v=20261020-enclosed-kitchen'; $('lightbox').showModal(); });
+    button.addEventListener('click', () => { $('lightbox-image').src = item.src + '?v=20261027-study-bay-desk'; $('lightbox-image').alt = item.title; $('lightbox-caption').textContent = item.title; $('lightbox-original').href = item.src + '?v=20261027-study-bay-desk'; $('lightbox').showModal(); });
     const caption = document.createElement('figcaption');
     const name = document.createElement('span'); name.textContent = item.title;
     const arrow = document.createElement('span'); arrow.textContent = '↗'; caption.append(name, arrow);

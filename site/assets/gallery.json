@@ -49,7 +49,7 @@
   },
   {
     "id": "study",
-    "title": "书房",
+    "title": "书房 · 飘窗外延书桌",
     "src": "assets/study.webp",
     "thumb": "assets/thumbs/study.webp",
     "width": 1800,
@@ -73,7 +73,7 @@
   },
   {
     "id": "study-storage",
-    "title": "书房 · 与窗垛齐平的书柜",
+    "title": "书房 · 窗边阅读与侧边收纳",
     "src": "assets/study-storage.webp",
     "thumb": "assets/thumbs/study-storage.webp",
     "width": 1800,
@@ -158,5 +158,13 @@
     "thumb": "assets/thumbs/dimensions-service.webp",
     "width": 4800,
     "height": 3400
+  },
+  {
+    "id": "study-legroom",
+    "title": "书房 · 飘窗书桌伸腿空间",
+    "src": "assets/study-legroom.webp",
+    "thumb": "assets/thumbs/study-legroom.webp",
+    "width": 2400,
+    "height": 1800
   }
 ]
